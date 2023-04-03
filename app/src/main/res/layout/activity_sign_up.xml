@@ -4,6 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="35dp"
     tools:context=".ui.signup.SignUpActivity">
 
+    <TextView
+        android:id="@+id/tv_signup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_signup_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="ID"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_title" />
+
+    <EditText
+        android:id="@+id/edt_signup_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="아이디를 입력하세요"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_id"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_id" />
+
+    <TextView
+        android:id="@+id/tv_signup_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="비밀번호"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_id"
+        app:layout_constraintTop_toBottomOf="@+id/edt_signup_id" />
+
+    <EditText
+        android:id="@+id/edt_signup_pwd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="비밀번호를 입력하세요"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/edt_signup_id"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_pwd" />
+
+    <TextView
+        android:id="@+id/tv_signup_mbti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="MBTI"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/edt_signup_pwd" />
+
+    <EditText
+        android:id="@+id/edt_signup_mbti"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="mbti를 입력하세요"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/edt_signup_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_mbti" />
+
+    <Button
+        android:id="@+id/btn_signup_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:paddingVertical="10dp"
+        android:text="회원가입"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_signup_mbti" />
 </androidx.constraintlayout.widget.ConstraintLayout>
