@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">GO SOPT Android</string>
+    <string name="edt_signup_name">이름을 입력하세요</string>
+    <string name="btn_signup_register">회원가입</string>
+    <string name="tv_signup_name">이름</string>
+    <string name="edt_signup_pwd">비밀번호를 입력하세요</string>
+    <string name="tv_signup_pwd">비밀번호</string>
+    <string name="edt_signup_id">아이디를 입력하세요</string>
+    <string name="tv_signup_id">ID</string>
+    <string name="tv_signup_title">회원가입</string>
+    <string name="edt_signup_specialty">특기를 입력하세요</string>
+    <string name="tv_signup_specialty">특기</string>
+    <string name="btn_signin_signup">회원가입</string>
+    <string name="btn_signin_bottom">로그인</string>
+    <string name="edt_signin_pwd">비밀번호를 입력해주세요</string>
+    <string name="tv_signin_pwd">PASSWORD</string>
+    <string name="edt_signin_id">아이디를 입력해주세요</string>
+    <string name="tv_signin_id">ID</string>
+    <string name="tv_signin_title">GO SOPT</string>
 </resources>
