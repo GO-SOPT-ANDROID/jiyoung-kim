@@ -33,7 +33,6 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.lifecycleOwner = this
         binding.vm = viewModel
         clickButton()
     }
@@ -50,8 +49,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
                             Toast.makeText(this@SignInActivity, "로그인 성공!", Toast.LENGTH_SHORT)
                                 .show()
                             Intent(this@SignInActivity, MyPageActivity::class.java).apply {
-                                putExtra("myInfo", viewModel.getInfo())
-                                setResult(RESULT_OK, intent)
+                                putExtra("myInfo", myInfo)
                                 startActivity(this)
                                 finish()
                             }
