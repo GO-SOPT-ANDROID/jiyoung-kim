@@ -4,27 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
     tools:context=".presentation.home.HomeFragment">
-
-    <TextView
-        android:id="@+id/tv_home_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="My playlist 🎧"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_home_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_home_title"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
