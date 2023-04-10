@@ -17,4 +17,6 @@
     <string name="edt_signin_id">아이디를 입력해주세요</string>
     <string name="tv_signin_id">ID</string>
     <string name="tv_signin_title">GO SOPT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
