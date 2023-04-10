@@ -13,30 +13,31 @@
         tools:targetApi="31">
         <activity
             android:name=".presentation.MyPageActivity"
-            android:exported="true">
+            android:exported="false">
 
         </activity>
         <activity
             android:name=".presentation.auth.SignUpActivity"
-            android:exported="true"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize">
 
         </activity>
 
         <activity
             android:name=".presentation.auth.SignInActivity"
-            android:exported="true"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
