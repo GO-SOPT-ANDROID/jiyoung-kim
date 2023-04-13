@@ -16,7 +16,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding
         get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" }
-    val itemList: List<Music> =
+    private val itemList: List<Music> =
         listOf(
             Music(R.drawable.kitkat, "Paul Blanco", "Star Ceiling"),
             Music(R.drawable.kitkat, "Jay Sean", "Do you love me"),
@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
             Music(R.drawable.kitkat, "SZA", "I Hate U")
 
         )
-    val title = Title("jiyoung's playlist 🎧")
+    private val title = Title("jiyoung's playlist 🎧")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
