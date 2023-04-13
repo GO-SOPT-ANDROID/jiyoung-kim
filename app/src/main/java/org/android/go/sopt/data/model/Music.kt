@@ -2,8 +2,8 @@ package org.android.go.sopt.data.model
 
 import androidx.annotation.DrawableRes
 
-data class Repo(
+data class Music(
     @DrawableRes val image: Int,
-    val name: String,
-    val repoName: String
+    val singer: String,
+    val musicTitle: String
 )
