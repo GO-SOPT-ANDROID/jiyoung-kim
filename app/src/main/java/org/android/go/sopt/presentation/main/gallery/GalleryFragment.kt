@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.home
+package org.android.go.sopt.presentation.main.gallery
 
 import android.os.Bundle
 import android.view.LayoutInflater

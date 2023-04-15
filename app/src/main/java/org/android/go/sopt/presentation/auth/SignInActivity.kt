@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
-import org.android.go.sopt.presentation.MyPageActivity
+import org.android.go.sopt.presentation.main.mypage.MyPageActivity
 import org.android.go.sopt.util.BindingActivity
 
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {

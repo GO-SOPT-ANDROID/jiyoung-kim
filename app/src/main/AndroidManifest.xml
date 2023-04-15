@@ -12,7 +12,7 @@
         android:theme="@style/Theme.GOSOPTAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.MyPageActivity"
+            android:name=".presentation.main.mypage.MyPageActivity"
             android:exported="false">
 
         </activity>

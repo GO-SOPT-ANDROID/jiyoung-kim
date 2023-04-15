@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation
+package org.android.go.sopt.presentation.main.mypage
 
 import android.os.Build
 import android.os.Bundle

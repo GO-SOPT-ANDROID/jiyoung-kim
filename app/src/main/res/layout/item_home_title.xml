@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="My playlist 🎧"
+            android:text="My playlist 🎧🎧"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold"
