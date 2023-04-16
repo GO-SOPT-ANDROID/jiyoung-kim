@@ -46,12 +46,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.rcvHomeView.apply {
+            layoutManager = LinearLayoutManager(context)
+//            scrollToPosition(0)
+        }
         val titleAdapter = HomeTitleAdapter()
         val itemAdapter = HomePlayListAdapter()
         titleAdapter.submitList(listOf(title))
         itemAdapter.submitList(itemList)
         binding.rcvHomeView.adapter = ConcatAdapter(titleAdapter, itemAdapter)
-        binding.rcvHomeView.layoutManager = LinearLayoutManager(context)
+//        binding.rcvHomeView.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onDestroy() {
