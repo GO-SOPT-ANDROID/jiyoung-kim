@@ -22,4 +22,5 @@
     <string name="menu_home">홈</string>
     <string name="menu_search">검색</string>
     <string name="menu_gallery">갤러리</string>
+    <string name="my_playlist_title">My playlist 🎧🎧</string>
 </resources>

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.Music
-import org.android.go.sopt.data.model.Title
 import org.android.go.sopt.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -33,7 +32,6 @@ class HomeFragment : Fragment() {
             Music(R.drawable.kitkat, 10, "처음 마주쳤을 때처럼", "TOIL, GIST")
 
         )
-    private val title = Title("jiyoung's playlist 🎧")
     lateinit var selectionTracker: SelectionTracker<Long>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +49,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val titleAdapter = HomeTitleAdapter()
+        val titleAdapter = HomeTitleAdapter(requireContext())
         val itemAdapter = HomePlayListAdapter()
         setAdapter(titleAdapter, itemAdapter)
         selectionTracker = binding.rcvHomeView.let { recyclerView ->
@@ -82,7 +80,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setAdapter(titleAdapter: HomeTitleAdapter, itemAdapter: HomePlayListAdapter) {
-        titleAdapter.submitList(listOf(title))
         itemAdapter.submitList(itemList)
         binding.rcvHomeView.also {
             it.adapter = ConcatAdapter(titleAdapter, itemAdapter)
