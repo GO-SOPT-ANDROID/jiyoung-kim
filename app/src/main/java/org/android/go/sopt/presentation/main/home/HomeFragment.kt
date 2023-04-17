@@ -73,7 +73,6 @@ class HomeFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        // Can be called before onCreateView
         if (::selectionTracker.isInitialized) {
             selectionTracker.onSaveInstanceState(outState)
         }
@@ -98,7 +97,7 @@ class HomeFragment : Fragment() {
         itemAdapter.selectionTracker = selectionTracker
         selectionTracker.addObserver(object : SelectionTracker.SelectionObserver<Long>() {
             override fun onSelectionChanged() {
-                selectionTracker.selection // List of selected ids.
+                selectionTracker.selection
             }
         })
     }
