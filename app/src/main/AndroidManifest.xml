@@ -19,17 +19,12 @@
         <activity
             android:name=".presentation.auth.SignUpActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".presentation.auth.SignInActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-
-
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
