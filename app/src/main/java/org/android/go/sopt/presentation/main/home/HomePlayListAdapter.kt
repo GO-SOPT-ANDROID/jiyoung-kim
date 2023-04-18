@@ -60,7 +60,7 @@ class HomePlayListAdapter :
         fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =
             object : ItemDetailsLookup.ItemDetails<Long>() {
                 override fun getPosition(): Int = bindingAdapterPosition
-                override fun getSelectionKey(): Long? =
+                override fun getSelectionKey(): Long =
                     (bindingAdapter as HomePlayListAdapter).currentList[bindingAdapterPosition].id.toLong()
             }
     }
