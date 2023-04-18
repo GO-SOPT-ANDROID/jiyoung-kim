@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     // Parcelize
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -59,5 +60,7 @@ dependencies {
     // navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.0'
+    //coil
+    implementation("io.coil-kt:coil:2.3.0")
 
 }

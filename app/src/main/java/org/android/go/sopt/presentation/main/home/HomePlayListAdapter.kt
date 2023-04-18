@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.data.model.Music
 import org.android.go.sopt.databinding.ItemHomePlaylistBinding
+import org.android.go.sopt.util.loadImage
 
 class HomePlayListAdapter :
     ListAdapter<Music, HomePlayListAdapter.PlaylistViewHolder>(PlaylistDiffCallback()) {
@@ -47,7 +48,7 @@ class HomePlayListAdapter :
     class PlaylistViewHolder(private val binding: ItemHomePlaylistBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: Music, selectionTracker: SelectionTracker<Long>) = with(itemView) {
-            binding.ivItemImage.setImageDrawable(binding.root.context.getDrawable(data.image))
+            binding.ivItemImage.loadImage(binding.root.context.getDrawable(data.image))
             binding.tvItemName.text = data.singer
             binding.tvItemUrl.text = data.musicTitle
             bindSelectedState(this, selectionTracker.isSelected(data.id.toLong()))

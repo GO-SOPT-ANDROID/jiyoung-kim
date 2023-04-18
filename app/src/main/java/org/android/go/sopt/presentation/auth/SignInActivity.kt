@@ -4,16 +4,16 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
 import org.android.go.sopt.presentation.main.mypage.MyPageActivity
 import org.android.go.sopt.util.BindingActivity
 import org.android.go.sopt.util.hideKeyboard
+import org.android.go.sopt.util.showSnackbar
+import org.android.go.sopt.util.showToast
 
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
     private val viewModel: AuthViewModel by viewModels()
@@ -27,8 +27,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
                 } else {
                     result.data?.getParcelableExtra("myInfo")
                 }
-                Snackbar.make(binding.root, "회원가입 완료!", Snackbar.LENGTH_SHORT)
-                    .show()
+                binding.root.showSnackbar("회원가입 완료!")
             }
         }
 
@@ -54,21 +53,18 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
                     viewModel.isSignTextInValid.observe(this@SignInActivity) {
                         Log.d("SignIn", viewModel.isSignTextInValid.value.toString())
                         if (viewModel.isSignTextInValid.value == true) {
-                            Toast.makeText(this@SignInActivity, "로그인 성공!", Toast.LENGTH_SHORT)
-                                .show()
+                            binding.root.showToast("로그인 성공!")
                             Intent(this@SignInActivity, MyPageActivity::class.java).apply {
                                 putExtra("myInfo", myInfo)
                                 startActivity(this)
                                 finish()
                             }
                         } else {
-                            Toast.makeText(this@SignInActivity, "로그인 실패!", Toast.LENGTH_SHORT)
-                                .show()
+                            binding.root.showToast("로그인 실패 ㅜㅜ")
                         }
                     }
                 } else {
-                    Toast.makeText(this@SignInActivity, "로그인 정보를 입력해주세요!", Toast.LENGTH_SHORT)
-                        .show()
+                    binding.root.showToast("로그인 정보를 입력해주세요!")
                 }
             }
 

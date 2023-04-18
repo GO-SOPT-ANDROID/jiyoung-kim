@@ -7,12 +7,14 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     android:background="@drawable/ic_music_selected"
-    android:paddingEnd="20dp">
+    android:paddingVertical="10dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="10dp">
 
     <ImageView
         android:id="@+id/iv_item_image"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toStartOf="@+id/tv_item_name"
@@ -37,7 +39,7 @@
         android:id="@+id/tv_item_url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="15dp"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
