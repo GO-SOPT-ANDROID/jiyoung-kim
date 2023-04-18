@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.BindingActivity
+import org.android.go.sopt.util.hideKeyboard
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     private val viewModel: AuthViewModel by viewModels()
@@ -15,6 +16,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
         binding.vm = viewModel
+        hideKeyBoard()
         clickSignUpBtn()
     }
 
@@ -28,6 +30,12 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
                 setResult(RESULT_OK, intent)
                 finish()
             }
+        }
+    }
+
+    private fun hideKeyBoard() {
+        binding.clSignupMain.setOnClickListener {
+            it.hideKeyboard()
         }
     }
 }

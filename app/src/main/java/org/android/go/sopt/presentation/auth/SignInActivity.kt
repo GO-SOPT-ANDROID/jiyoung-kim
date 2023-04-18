@@ -13,6 +13,7 @@ import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
 import org.android.go.sopt.presentation.main.mypage.MyPageActivity
 import org.android.go.sopt.util.BindingActivity
+import org.android.go.sopt.util.hideKeyboard
 
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
     private val viewModel: AuthViewModel by viewModels()
@@ -35,6 +36,13 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
         clickButton()
+        hideKeyBoard()
+    }
+
+    private fun hideKeyBoard() {
+        binding.root.setOnClickListener {
+            it.hideKeyboard()
+        }
     }
 
     private fun clickButton() {
