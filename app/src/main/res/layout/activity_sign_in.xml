@@ -7,7 +7,7 @@
     <data>
         <variable
             name="vm"
-            type="org.android.go.sopt.presentation.auth.AuthViewModel" />
+            type="org.android.go.sopt.presentation.auth.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,7 +83,7 @@
             app:layout_constraintBottom_toTopOf="@id/btn_signin_bottom"
             app:layout_constraintTop_toBottomOf="@+id/tv_signin_pwd" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signin_bottom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -91,6 +91,7 @@
             android:layout_marginBottom="10dp"
             android:paddingVertical="10dp"
             android:text="@string/btn_signin_bottom"
+            android:background="@drawable/shape_light_green_radius_10"
             android:textSize="16sp"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintEnd_toEndOf="parent"
@@ -98,13 +99,14 @@
             app:layout_constraintBottom_toTopOf="@id/btn_signin_signup"
             app:layout_constraintTop_toBottomOf="@+id/edt_signin_pwd" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signin_signup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:paddingVertical="10dp"
             android:text="@string/btn_signin_signup"
+            android:background="@drawable/shape_green_radius_10"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

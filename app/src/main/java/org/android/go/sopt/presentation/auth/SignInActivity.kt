@@ -1,66 +1,82 @@
 package org.android.go.sopt.presentation.auth
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
-import org.android.go.sopt.presentation.MyPageActivity
-import org.android.go.sopt.util.BindingActivity
+import org.android.go.sopt.presentation.main.mypage.MyPageActivity
+import org.android.go.sopt.util.*
 
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
-    private val viewModel: AuthViewModel by viewModels()
-    private var myInfo: MyInfo? = null
+    private val viewModel: SignInViewModel by viewModels()
+    private var signUpInfo: MyInfo? = null
 
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
             if (result.resultCode == RESULT_OK) {
-                myInfo = if (Build.VERSION.SDK_INT >= 33) {
-                    result.data?.getParcelableExtra("myInfo", MyInfo::class.java)
-                } else {
-                    result.data?.getParcelableExtra("myInfo")
+                val data = result.data ?: return@registerForActivityResult
+                data.getParcelable("myInfo", MyInfo::class.java).apply {
+                    this?.let {
+                        signUpInfo = it
+                        viewModel.getSignUpInfo(it)
+                        binding.root.showSnackbar("회원가입 완료!")
+                    }
                 }
-                Snackbar.make(binding.root, "회원가입 완료!", Snackbar.LENGTH_SHORT)
-                    .show()
+            } else {
+                return@registerForActivityResult
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
+        observeSignInValid()
+        hideKeyBoard()
         clickButton()
+    }
+
+    private fun hideKeyBoard() {
+        binding.root.setOnClickListener {
+            it.hideKeyboard()
+        }
+    }
+
+    private fun observeSignInValid() {
+        viewModel.isSignInValid.observe(this) {
+            Log.d("SignIn", "isSignInValid :: ${viewModel.isSignInValid.value}")
+            if (viewModel.isSignInValid.value == true) {
+                binding.root.showToast("로그인 성공!")
+                Intent(this, MyPageActivity::class.java).apply {
+                    putExtra("myInfo", signUpInfo)
+                    startActivity(this)
+                    finish()
+                }
+            } else {
+                Log.d("SignIn", "정보를 다시 입력해주세요")
+            }
+        }
     }
 
     private fun clickButton() {
         with(binding) {
             // 로그인 버튼
             btnSigninBottom.setOnClickListener {
-                if (myInfo?.id != null && myInfo?.pwd != null) {
-                    viewModel.isSignInValid(myInfo!!.id, myInfo!!.pwd)
-                    viewModel.isSignTextInValid.observe(this@SignInActivity) {
-                        Log.d("SignIn", viewModel.isSignTextInValid.value.toString())
-                        if (viewModel.isSignTextInValid.value == true) {
-                            Toast.makeText(this@SignInActivity, "로그인 성공!", Toast.LENGTH_SHORT)
-                                .show()
-                            Intent(this@SignInActivity, MyPageActivity::class.java).apply {
-                                putExtra("myInfo", myInfo)
-                                startActivity(this)
-                                finish()
-                            }
-                        } else {
-                            Toast.makeText(this@SignInActivity, "로그인 실패!", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
+                Log.d("엥", "내가 입력한 id:: ${viewModel.id.value}")
+                Log.d("엥", "내가 입력한 pwd:: ${viewModel.pwd.value}")
+                Log.d(
+                    "SignIn",
+                    "ss :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.specialty}"
+                )
+                if (signUpInfo?.id!!.isNotEmpty() && signUpInfo?.pwd!!.isNotEmpty()) {
+                    Log.d("엥", "48")
+                    viewModel.signInValid(signUpInfo!!.id, signUpInfo!!.pwd)
                 } else {
-                    Toast.makeText(this@SignInActivity, "로그인 정보를 입력해주세요!", Toast.LENGTH_SHORT)
-                        .show()
+                    binding.root.showToast("로그인 정보를 입력해주세요")
                 }
             }
 

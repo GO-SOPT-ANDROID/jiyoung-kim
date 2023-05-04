@@ -2,14 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:id="@+id/cl_item_playlist"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingEnd="20dp">
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/ic_music_selected"
+    android:paddingVertical="10dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="10dp">
 
     <ImageView
         android:id="@+id/iv_item_image"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toStartOf="@+id/tv_item_name"
@@ -17,6 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
+        android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -27,16 +33,18 @@
         app:layout_constraintBottom_toTopOf="@+id/tv_item_url"
         app:layout_constraintStart_toEndOf="@id/iv_item_image"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="jiyoung" />
+        tools:text="가수" />
 
     <TextView
         android:id="@+id/tv_item_url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tv_item_name"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tv_item_name"
-        tools:text="github 주소" />
+        tools:text="노래 이름" />
 </androidx.constraintlayout.widget.ConstraintLayout>
