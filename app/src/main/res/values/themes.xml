@@ -9,9 +9,13 @@
         <item name="colorSecondary">@color/white_100</item>
         <item name="colorSecondaryVariant">@color/white_300</item>
         <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnBackground">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- Font Theme -->
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.SOPT.HeadLineMedium</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.SOPT.BodyMedium</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.SOPT.CaptionMedium</item>
     </style>
 
 </resources>

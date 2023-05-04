@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.SOPT" parent="">
+        <item name="fontFamily">@font/app_font</item>
+        <item name="fontWeight">400</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextAppearance.SOPT.HeadLineMedium">
+        <item name="fontFamily">@font/scdream_bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.SOPT.BodyMedium">
+        <item name="fontWeight">400</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.SOPT.CaptionMedium">
+        <item name="fontWeight">500</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+</resources>
