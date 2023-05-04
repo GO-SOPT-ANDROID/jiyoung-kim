@@ -12,9 +12,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="80dp"
+        android:layout_height="match_parent"
+        android:paddingVertical="50dp"
         android:paddingHorizontal="30dp"
+        android:background="?colorSecondaryVariant"
         tools:context=".presentation.auth.SignInActivity">
 
         <TextView
@@ -22,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="40dp"
             android:text="@string/tv_signin_title"
             android:textColor="@color/black"
             android:textSize="26sp"
@@ -36,7 +37,7 @@
             android:id="@+id/tv_signin_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:text="@string/tv_signin_id"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -76,41 +77,39 @@
             android:layout_marginTop="10dp"
             android:hint="@string/edt_signin_pwd"
             android:importantForAutofill="no"
-            android:text="@={vm.pwd}"
             android:inputType="textPassword"
+            android:text="@={vm.pwd}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_signin_bottom"
             app:layout_constraintTop_toBottomOf="@+id/tv_signin_pwd" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signin_bottom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/shape_light_green_radius_10"
             android:paddingVertical="10dp"
             android:text="@string/btn_signin_bottom"
-            android:background="@drawable/shape_light_green_radius_10"
             android:textSize="16sp"
-            app:layout_constraintVertical_bias="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_signin_signup"
             app:layout_constraintTop_toBottomOf="@+id/edt_signin_pwd" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signin_signup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="210dp"
+            android:background="@drawable/shape_green_radius_10"
             android:paddingVertical="10dp"
             android:text="@string/btn_signin_signup"
-            android:background="@drawable/shape_green_radius_10"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_signin_bottom" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

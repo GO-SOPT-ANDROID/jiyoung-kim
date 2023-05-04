@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <data>
 
@@ -16,7 +17,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/my_playlist_title"
-            android:textColor="@color/black"
+            android:textColor="?colorPrimary"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
