@@ -63,6 +63,8 @@
                     android:minHeight="48dp"
                     android:textAppearance="?textAppearanceBodyMedium"
                     android:text="@={vm.id}"
+                    android:background="@drawable/shape_white_radius_10"
+                    android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/tv_signup_pwd"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -89,6 +91,8 @@
                     android:minHeight="48dp"
                     android:textAppearance="?textAppearanceBodyMedium"
                     android:text="@={vm.pwd}"
+                    android:background="@drawable/shape_white_radius_10"
+                    android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/tv_signup_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -114,6 +118,8 @@
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
                     android:text="@={vm.name}"
+                    android:background="@drawable/shape_white_radius_10"
+                    android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@id/tv_signup_specialty"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -141,6 +147,8 @@
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
                     android:text="@={vm.specialty}"
+                    android:background="@drawable/shape_white_radius_10"
+                    android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/btn_signup_register"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -51,6 +51,8 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:text="@={vm.id}"
+            android:background="@drawable/shape_white_radius_10"
+            android:padding="12dp"
             android:textAppearance="?textAppearanceBodyMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +79,8 @@
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:text="@={vm.pwd}"
+            android:background="@drawable/shape_white_radius_10"
+            android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_signin_pwd" />
