@@ -14,8 +14,11 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Font Theme -->
         <item name="textAppearanceHeadlineMedium">@style/TextAppearance.SOPT.HeadLineMedium</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.SOPT.HeadLineLarge</item>
         <item name="textAppearanceBodyMedium">@style/TextAppearance.SOPT.BodyMedium</item>
         <item name="textAppearanceLabelMedium">@style/TextAppearance.SOPT.CaptionMedium</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.SOPT.CaptionLarge</item>
+
     </style>
 
 </resources>
