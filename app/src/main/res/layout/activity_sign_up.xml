@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="org.android.go.sopt.presentation.auth.AuthViewModel" />
+            type="org.android.go.sopt.presentation.auth.SignUpViewModel" />
 
     </data>
 
@@ -143,12 +143,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_signup_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
                     android:text="@string/btn_signup_register"
+                    android:background="@drawable/shape_light_green_radius_10"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
