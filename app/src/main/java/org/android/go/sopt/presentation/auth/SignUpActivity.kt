@@ -5,17 +5,20 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import org.android.go.sopt.R
+import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.BindingActivity
 import org.android.go.sopt.util.hideKeyboard
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
-    private val viewModel: AuthViewModel by viewModels()
+    private val viewModel: SignUpViewModel by viewModels()
+    private var signUpInfo: MyInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
         binding.vm = viewModel
+        observeSignUpValid()
         hideKeyBoard()
         clickSignUpBtn()
     }
@@ -23,12 +26,25 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     private fun clickSignUpBtn() {
         binding.btnSignupRegister.setOnClickListener {
             Log.d("SignUp", viewModel.getInfo().toString())
-            viewModel.isSignUpValid.observe(this) {
-                val intent = Intent(this, SignInActivity::class.java).apply {
-                    putExtra("myInfo", viewModel.getInfo())
+            signUpInfo = viewModel.getInfo()
+            viewModel.signUpValid()
+        }
+    }
+
+    private fun observeSignUpValid() {
+        viewModel.isSignUpValid.observe(this) {
+            when (it) {
+                true -> {
+                    val intent = Intent(this, SignInActivity::class.java).apply {
+                        Log.d("SignUp", signUpInfo.toString())
+                        putExtra("myInfo", signUpInfo)
+                    }
+                    setResult(RESULT_OK, intent)
+                    finish()
                 }
-                setResult(RESULT_OK, intent)
-                finish()
+                else -> {
+                    Log.d("SignUp", "회원가입 실패")
+                }
             }
         }
     }
