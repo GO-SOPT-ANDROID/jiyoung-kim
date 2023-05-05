@@ -21,6 +21,7 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_main"
+            app:itemIconTint="@drawable/bottom_navigation_selector"
             android:layout_width="0dp"
             android:layout_height="56dp"
             app:layout_constraintBottom_toBottomOf="parent"
