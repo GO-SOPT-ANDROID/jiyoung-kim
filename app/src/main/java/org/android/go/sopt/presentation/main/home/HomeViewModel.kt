@@ -2,7 +2,7 @@ package org.android.go.sopt.presentation.main.home
 
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.Music
+import org.android.go.sopt.domain.model.Music
 
 class HomeViewModel : ViewModel() {
     val itemList: List<Music> =

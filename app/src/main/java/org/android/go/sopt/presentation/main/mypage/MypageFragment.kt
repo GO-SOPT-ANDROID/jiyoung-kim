@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.android.go.sopt.data.model.entity.MyInfo
+import org.android.go.sopt.domain.model.MyInfo
 import org.android.go.sopt.databinding.FragmentMypageBinding
 
 class MypageFragment : Fragment() {

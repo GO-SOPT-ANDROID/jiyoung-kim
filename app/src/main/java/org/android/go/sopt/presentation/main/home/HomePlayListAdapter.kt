@@ -10,7 +10,7 @@ import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.android.go.sopt.data.model.Music
+import org.android.go.sopt.domain.model.Music
 import org.android.go.sopt.databinding.ItemHomePlaylistBinding
 import org.android.go.sopt.util.loadImage
 
