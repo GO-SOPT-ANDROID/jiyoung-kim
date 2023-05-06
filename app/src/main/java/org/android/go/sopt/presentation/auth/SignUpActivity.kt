@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.MyInfo
+import org.android.go.sopt.domain.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.BindingActivity
+import org.android.go.sopt.util.ViewModelFactory
 import org.android.go.sopt.util.hideKeyboard
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
-    private val viewModel: SignUpViewModel by viewModels()
+    private val viewModel: SignUpViewModel by viewModels { (ViewModelFactory(this)) }
     private var signUpInfo: MyInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             Log.d("SignUp", viewModel.getInfo().toString())
             signUpInfo = viewModel.getInfo()
             viewModel.signUpValid()
+            viewModel.saveUserInfo()
         }
     }
 

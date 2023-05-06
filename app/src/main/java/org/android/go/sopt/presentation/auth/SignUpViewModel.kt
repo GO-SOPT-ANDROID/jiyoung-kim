@@ -3,9 +3,12 @@ package org.android.go.sopt.presentation.auth
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.android.go.sopt.data.model.MyInfo
+import org.android.go.sopt.domain.model.MyInfo
+import org.android.go.sopt.domain.repository.AuthRepository
 
-class SignUpViewModel : ViewModel() {
+class SignUpViewModel(
+    private val authRepository: AuthRepository
+) : ViewModel() {
     val id: MutableLiveData<String> = MutableLiveData()
     val pwd: MutableLiveData<String> = MutableLiveData()
     val name: MutableLiveData<String> = MutableLiveData()
@@ -29,5 +32,9 @@ class SignUpViewModel : ViewModel() {
     fun signUpValid() {
         _isSignUpValid.value =
             id.value!!.length in 6..10 && pwd.value!!.length in 8..12 && !name.value.isNullOrBlank() && !specialty.value.isNullOrBlank()
+    }
+
+    fun saveUserInfo() {
+        authRepository.updateUserInfo(getInfo())
     }
 }
