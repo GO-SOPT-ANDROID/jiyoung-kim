@@ -7,15 +7,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.selection.ItemDetailsLookup
 import androidx.recyclerview.selection.ItemKeyProvider
 import androidx.recyclerview.selection.SelectionTracker
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.android.go.sopt.domain.model.Music
 import org.android.go.sopt.databinding.ItemHomePlaylistBinding
+import org.android.go.sopt.domain.model.Music
+import org.android.go.sopt.util.ItemDiffCallback
 import org.android.go.sopt.util.loadImage
 
 class HomePlayListAdapter :
-    ListAdapter<Music, HomePlayListAdapter.PlaylistViewHolder>(PlaylistDiffCallback()) {
+    ListAdapter<Music, HomePlayListAdapter.PlaylistViewHolder>(
+        ItemDiffCallback<Music>(
+            onContentsTheSame = { old, new -> old == new },
+            onItemsTheSame = { old, new -> old == new }
+        )
+    ) {
     lateinit var selectionTracker: SelectionTracker<Long>
 
     init {
@@ -80,14 +85,4 @@ class HomePlayListAdapter :
     }
 
     override fun getItemId(position: Int): Long = position.toLong()
-}
-
-private class PlaylistDiffCallback : DiffUtil.ItemCallback<Music>() {
-    override fun areItemsTheSame(oldItem: Music, newItem: Music): Boolean {
-        return oldItem == newItem
-    }
-
-    override fun areContentsTheSame(oldItem: Music, newItem: Music): Boolean {
-        return oldItem == newItem
-    }
 }
