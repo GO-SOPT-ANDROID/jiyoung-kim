@@ -5,46 +5,65 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="org.android.go.sopt.presentation.main.mypage.MypageViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/iv_mypage_main"
-            app:layout_constraintDimensionRatio="1"
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_marginTop="108dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/kitkat"
+            app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/kitkat" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_mypage_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="27dp"
-            tools:text="이름: 김지영"
+            android:text="@{`이름: ` + vm.userInfo.name}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/tv_mypage_specialty"
             app:layout_constraintEnd_toEndOf="@+id/iv_mypage_main"
-            app:layout_constraintStart_toStartOf="@+id/iv_mypage_main" />
+            app:layout_constraintStart_toStartOf="@+id/iv_mypage_main"
+            tools:text="이름: 김지영" />
 
         <TextView
             android:id="@+id/tv_mypage_specialty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="392dp"
-            tools:text="특기: 술먹기"
             android:textColor="@color/black"
-            app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_mypage_name"
-            app:layout_constraintStart_toStartOf="@+id/tv_mypage_name" />
+            app:layout_constraintStart_toStartOf="@+id/tv_mypage_name"
+            app:layout_constraintVertical_bias="0"
+            tools:text="특기: 술먹기"
+            android:text="@{`특기: `+ vm.userInfo.specialty}"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_mypage_withdraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/shape_light_green_radius_10"
+            android:text="@string/btn_mypage_withdraw"
+            android:textAppearance="?textAppearanceBodyMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
