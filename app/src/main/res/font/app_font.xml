@@ -4,47 +4,38 @@
     <font
         android:font="@font/scdream_black"
         android:fontStyle="normal"
-        android:fontWeight="900" />
+        android:textFontWeight="900" />
     <font
         android:font="@font/scdream_extrabold"
         android:fontStyle="normal"
-        android:fontWeight="800" />
+        android:textFontWeight="800" />
     <font
         android:font="@font/scdream_bold"
         android:fontStyle="normal"
-        android:fontWeight="700" />
+        android:textFontWeight="700" />
     <font
         android:font="@font/scdream_semibold"
         android:fontStyle="normal"
-        android:fontWeight="600" />
+        android:textFontWeight="600" />
     <font
         android:font="@font/scdream_medium"
         android:fontStyle="normal"
-        android:fontWeight="500" />
+        android:textFontWeight="500" />
     <font
         android:font="@font/scdream_normal"
         android:fontStyle="normal"
-        android:fontWeight="400" />
+        android:textFontWeight="400" />
     <font
         android:font="@font/scdream_light"
         android:fontStyle="normal"
-        android:fontWeight="300" />
+        android:textFontWeight="300" />
     <font
         android:font="@font/scdream_extralight"
         android:fontStyle="normal"
-        android:fontWeight="200" />
+        android:textFontWeight="200" />
     <font
         android:font="@font/scdream_thin"
         android:fontStyle="normal"
-        android:fontWeight="100" />
+        android:textFontWeight="100" />
 
-    <!-- rokafsans -->
-    <font
-        android:font="@font/rokafsans_medium"
-        android:fontStyle="normal"
-        android:fontWeight="500" />
-    <font
-        android:font="@font/rokafsans_semibold"
-        android:fontStyle="normal"
-        android:fontWeight="600" />
 </font-family>
