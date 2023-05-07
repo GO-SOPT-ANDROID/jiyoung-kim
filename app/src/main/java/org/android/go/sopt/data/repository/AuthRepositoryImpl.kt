@@ -22,9 +22,9 @@ class AuthRepositoryImpl(private val authDataSource: AuthDataSource) : AuthRepos
         runCatching {
             authDataSource.setUserInfo(userInfo)
         }.onSuccess {
-            Log.d("auth", "회원 탈퇴 성공")
+            Log.d("auth", "회원 update 성공")
         }.onFailure {
-            Log.d("auth", "회원 탈퇴 실패...")
+            Log.d("auth", "회원 update 실패...")
         }
     }
 
@@ -32,9 +32,9 @@ class AuthRepositoryImpl(private val authDataSource: AuthDataSource) : AuthRepos
         runCatching {
             authDataSource.isAlreadySignUp = isAutoLogin
         }.onSuccess {
-            Log.d("auth", "회원 탈퇴 성공")
+            Log.d("auth", "자동로그인 성공")
         }.onFailure {
-            Log.d("auth", "회원 탈퇴 실패...")
+            Log.d("auth", "자동로그인 실패...")
         }
     }
 
