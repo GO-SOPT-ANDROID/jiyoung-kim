@@ -23,4 +23,6 @@
     <string name="menu_search">검색</string>
     <string name="menu_gallery">갤러리</string>
     <string name="my_playlist_title">My playlist 🎧🎧</string>
+    <string name="btn_mypage_withdraw">회원탈퇴</string>
+    <string name="tv_signin_signup">회원가입</string>
 </resources>
