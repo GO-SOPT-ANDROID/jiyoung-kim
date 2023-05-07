@@ -97,7 +97,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             }
 
             // 회원가입 버튼
-            btnSigninSignup.setOnClickListener {
+            tvSigninSignup.setOnClickListener {
                 launcher.launch(Intent(this@SignInActivity, SignUpActivity::class.java))
             }
         }
