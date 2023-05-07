@@ -1,16 +1,20 @@
 package org.android.go.sopt.presentation.main.mypage
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import org.android.go.sopt.domain.model.MyInfo
+import androidx.fragment.app.viewModels
 import org.android.go.sopt.databinding.FragmentMypageBinding
+import org.android.go.sopt.presentation.auth.SignInActivity
+import org.android.go.sopt.util.ViewModelFactory
 
 class MypageFragment : Fragment() {
-    private var myInfo: MyInfo? = null
+    private val viewModel: MypageViewModel by viewModels { (ViewModelFactory(requireContext())) }
 
     private var _binding: FragmentMypageBinding? = null
     private val binding: FragmentMypageBinding
@@ -30,19 +34,35 @@ class MypageFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.vm = viewModel
         super.onViewCreated(view, savedInstanceState)
-        myInfo?.let {
-            setText(it)
-            Log.d("Home", it.name)
-            Log.d("Home", it.specialty)
+        clickWithdrawBtn()
+    }
+
+    private fun clickWithdrawBtn() {
+        binding.btnMypageWithdraw.setOnClickListener {
+            showDialog()
         }
     }
 
-    private fun setText(myInfo: MyInfo) {
-        with(binding) {
-            "이름: ${myInfo.name}".also { tvMypageName.text = it }
-            "특기: ${myInfo.specialty}".also { tvMypageSpecialty.text = it }
-        }
+    private fun showDialog() {
+        val intent = Intent(activity, SignInActivity::class.java)
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("잠깐!")
+            .setMessage("회원탈퇴 하시겠어요?")
+            .setPositiveButton(
+                "확인",
+                DialogInterface.OnClickListener { dialog, id ->
+                    viewModel.deleteUser()
+                    startActivity(intent)
+                }
+            )
+            .setNegativeButton(
+                "취소",
+                DialogInterface.OnClickListener { dialog, id ->
+                }
+            )
+        builder.show()
     }
 
     override fun onDestroy() {
