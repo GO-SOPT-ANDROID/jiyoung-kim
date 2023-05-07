@@ -102,27 +102,12 @@
             android:id="@+id/tv_signin_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="회원가입"
+            android:text="@string/tv_signin_signup"
             app:layout_constraintTop_toBottomOf="@+id/btn_signin_bottom"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textAppearance="?textAppearanceLabelLarge"
             android:layout_marginTop="10dp"/>
-
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/btn_signin_signup"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_marginBottom="210dp"-->
-<!--            android:background="@drawable/shape_green_radius_10"-->
-<!--            android:paddingVertical="10dp"-->
-<!--            android:text="@string/btn_signin_signup"-->
-<!--            android:textAppearance="?textAppearanceBodyMedium"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn_signin_bottom" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
