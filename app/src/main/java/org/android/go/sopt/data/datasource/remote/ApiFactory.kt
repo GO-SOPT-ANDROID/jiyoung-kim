@@ -3,13 +3,15 @@ package org.android.go.sopt.data.datasource.remote
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import org.android.go.sopt.BuildConfig
 import org.android.go.sopt.data.service.SignUpService
 import retrofit2.Retrofit
 
 object ApiFactory {
+    private const val AUTH_BASE_URL = BuildConfig.AUTH_BASE_URL
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("http://52.78.152.187:8080/")
+            .baseUrl(AUTH_BASE_URL)
             .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
             .build()
     }

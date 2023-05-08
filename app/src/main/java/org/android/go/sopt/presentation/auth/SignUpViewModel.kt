@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.data.datasource.remote.ServicePool
+import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.data.model.request.RequestSignUpDto
 import org.android.go.sopt.data.model.response.ResponseSignUpDto
-import org.android.go.sopt.domain.model.MyInfo
 import org.android.go.sopt.domain.repository.AuthRepository
 import retrofit2.Call
 import retrofit2.Callback

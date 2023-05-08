@@ -9,19 +9,19 @@ import org.android.go.sopt.presentation.auth.SignInViewModel
 import org.android.go.sopt.presentation.auth.SignUpViewModel
 import org.android.go.sopt.presentation.main.mypage.MypageViewModel
 
-class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
+class ViewModelFactory(private val applicationContext: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(SignUpViewModel::class.java) -> {
-                val repository = AuthRepositoryImpl(AuthDataSource(context))
+                val repository = AuthRepositoryImpl(AuthDataSource(applicationContext))
                 SignUpViewModel(repository) as T
             }
             modelClass.isAssignableFrom(SignInViewModel::class.java) -> {
-                val repository = AuthRepositoryImpl(AuthDataSource(context))
+                val repository = AuthRepositoryImpl(AuthDataSource(applicationContext))
                 SignInViewModel(repository) as T
             }
             modelClass.isAssignableFrom(MypageViewModel::class.java) -> {
-                val repository = AuthRepositoryImpl(AuthDataSource(context))
+                val repository = AuthRepositoryImpl(AuthDataSource(applicationContext))
                 MypageViewModel(repository) as T
             }
             else -> {

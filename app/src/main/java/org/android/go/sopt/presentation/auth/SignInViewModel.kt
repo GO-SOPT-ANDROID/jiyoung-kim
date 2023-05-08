@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.android.go.sopt.domain.model.MyInfo
+import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.domain.repository.AuthRepository
 
 class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() {

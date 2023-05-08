@@ -2,7 +2,7 @@ package org.android.go.sopt.presentation.main.mypage
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.android.go.sopt.domain.model.MyInfo
+import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.domain.repository.AuthRepository
 
 class MypageViewModel(private val authRepository: AuthRepository) : ViewModel() {

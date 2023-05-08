@@ -2,7 +2,7 @@ package org.android.go.sopt.data.repository
 
 import android.util.Log
 import org.android.go.sopt.data.datasource.local.AuthDataSource
-import org.android.go.sopt.domain.model.MyInfo
+import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.domain.repository.AuthRepository
 
 class AuthRepositoryImpl(private val authDataSource: AuthDataSource) : AuthRepository {

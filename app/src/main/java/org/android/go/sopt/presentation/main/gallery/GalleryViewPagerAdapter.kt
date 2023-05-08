@@ -7,7 +7,7 @@ import org.android.go.sopt.databinding.ItemGalleryPagerBinding
 
 class GalleryViewPagerAdapter(_itemList: List<Int> = listOf()) :
     RecyclerView.Adapter<GalleryViewPagerAdapter.PagerViewHolder>() {
-    lateinit var binding: ItemGalleryPagerBinding
+    private lateinit var binding: ItemGalleryPagerBinding
     private var itemList: List<Int> = _itemList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {

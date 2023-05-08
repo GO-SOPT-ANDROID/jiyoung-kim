@@ -1,6 +1,6 @@
 package org.android.go.sopt.domain.repository
 
-import org.android.go.sopt.domain.model.MyInfo
+import org.android.go.sopt.data.model.MyInfo
 
 interface AuthRepository {
     fun deleteUserInfo()

@@ -9,12 +9,13 @@ SharedPreferences 클래스는 앱에 있는 다른 액티비티보다 먼저 �
 Application()을 상속받는 MyApplication 클래스를 생성하여, onCreate()보다 먼저 prefs를 초기화 해준다.
  */
 class SoptApplication : Application() {
-    companion object {
-        lateinit var prefs: AuthDataSource
-    }
 
     override fun onCreate() {
         prefs = AuthDataSource(applicationContext)
         super.onCreate()
+    }
+
+    companion object {
+        lateinit var prefs: AuthDataSource
     }
 }
