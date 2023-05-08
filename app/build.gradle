@@ -54,6 +54,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     //viewmodel ktx
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    implementation 'androidx.activity:activity-ktx:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.9'
     // recyclerView
     implementation "androidx.recyclerview:recyclerview:1.3.0"
@@ -63,5 +64,16 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.0'
     //coil
     implementation("io.coil-kt:coil:2.3.0")
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+    // json으로 변환해주는 converter
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
+    // define a BOM and its version
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+
+    // define any required OkHttp artifacts without version (BOM을 위에 명시했으니, 밑의 버전들은 BOM에 맞게 적용됩니다.)
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
 
 }

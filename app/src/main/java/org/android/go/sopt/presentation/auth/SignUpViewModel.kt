@@ -1,10 +1,17 @@
 package org.android.go.sopt.presentation.auth
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.android.go.sopt.data.datasource.remote.ServicePool
+import org.android.go.sopt.data.model.request.RequestSignUpDto
+import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.model.MyInfo
 import org.android.go.sopt.domain.repository.AuthRepository
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpViewModel(
     private val authRepository: AuthRepository
@@ -17,6 +24,17 @@ class SignUpViewModel(
     private val _isSignUpValid = MutableLiveData(false)
     val isSignUpValid: LiveData<Boolean>
         get() = _isSignUpValid
+
+    private val _isSignUpSuccess = MutableLiveData(false)
+    val isSignUpSuccess: LiveData<Boolean>
+        get() = _isSignUpSuccess
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
+    val signUpResult: MutableLiveData<ResponseSignUpDto> = MutableLiveData()
+
+    private val signUpService = ServicePool.signUpService
 
     fun getInfo(): MyInfo {
         return MyInfo(
@@ -36,5 +54,28 @@ class SignUpViewModel(
 
     fun saveUserInfo() {
         authRepository.updateUserInfo(getInfo())
+    }
+
+    fun signUp(id: String, pwd: String, name: String, specialty: String) {
+        signUpService.signUp(
+            RequestSignUpDto(id, pwd, name, specialty)
+        ).enqueue(object : Callback<ResponseSignUpDto> {
+            override fun onResponse(
+                call: Call<ResponseSignUpDto>,
+                response: Response<ResponseSignUpDto>
+            ) {
+                Log.d("SignUpActivity", response.body().toString())
+                if (response.isSuccessful) { // 통신 성공
+                    _isSignUpSuccess.value = true
+                    signUpResult.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseSignUpDto>, t: Throwable) { // 통신 실패
+                _isSignUpSuccess.value = false
+                _errorMessage.value = "네트워크 상태가 좋지 않습니다"
+                Log.e("SignUpActivity", t.message.toString(), t)
+            }
+        })
     }
 }

@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import org.android.go.sopt.R
-import org.android.go.sopt.domain.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignUpBinding
+import org.android.go.sopt.domain.model.MyInfo
 import org.android.go.sopt.util.BindingActivity
 import org.android.go.sopt.util.ViewModelFactory
 import org.android.go.sopt.util.hideKeyboard
