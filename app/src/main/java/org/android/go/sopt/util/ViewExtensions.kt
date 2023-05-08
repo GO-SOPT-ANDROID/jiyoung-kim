@@ -2,6 +2,7 @@ package org.android.go.sopt.util
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -27,6 +28,17 @@ fun View.showToast(message: String) {
 fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
+// convert dp to px
+fun Context.dpToPx(dp: Int): Int {
+    return (
+        TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp.toFloat(),
+            this.resources.displayMetrics
+        )
+        ).toInt()
 }
 
 fun ImageView.loadImage(image: Drawable?) {

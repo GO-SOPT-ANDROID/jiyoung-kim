@@ -14,5 +14,8 @@ class GalleryFragment : BindingFragment<FragmentGalleryBinding>(R.layout.fragmen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.vpGalleryMain.adapter = GalleryViewPagerAdapter().apply {
+            setItemList(listOf(R.drawable.kitkat, R.drawable.kitkat, R.drawable.kitkat))
+        }
     }
 }

@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import org.android.go.sopt.MainActivity
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
-import org.android.go.sopt.presentation.main.mypage.MyPageActivity
 import org.android.go.sopt.util.*
 
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
-    private val viewModel: SignInViewModel by viewModels()
+    private val viewModel: SignInViewModel by viewModels { (ViewModelFactory(applicationContext)) }
     private var signUpInfo: MyInfo? = null
 
     private val launcher =
@@ -36,6 +36,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
         observeSignInValid()
+        observeAutoSignIn()
         hideKeyBoard()
         clickButton()
     }
@@ -51,13 +52,28 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             Log.d("SignIn", "isSignInValid :: ${viewModel.isSignInValid.value}")
             if (viewModel.isSignInValid.value == true) {
                 binding.root.showToast("로그인 성공!")
-                Intent(this, MyPageActivity::class.java).apply {
+                Intent(this, MainActivity::class.java).apply {
                     putExtra("myInfo", signUpInfo)
                     startActivity(this)
                     finish()
                 }
             } else {
                 Log.d("SignIn", "정보를 다시 입력해주세요")
+            }
+        }
+    }
+
+    private fun observeAutoSignIn() {
+        viewModel.isAutoSignInValid.observe(this) {
+            when (it) {
+                true -> {
+                    Intent(this, MainActivity::class.java).apply {
+                        startActivity(this)
+                    }
+                }
+                else -> {
+                    Log.d("SignIn", "자동 로그인 오류")
+                }
             }
         }
     }
@@ -69,7 +85,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
                 Log.d("엥", "내가 입력한 id:: ${viewModel.id.value}")
                 Log.d("엥", "내가 입력한 pwd:: ${viewModel.pwd.value}")
                 Log.d(
-                    "SignIn",
+                    "엥",
                     "ss :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.specialty}"
                 )
                 if (signUpInfo?.id!!.isNotEmpty() && signUpInfo?.pwd!!.isNotEmpty()) {
@@ -81,7 +97,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             }
 
             // 회원가입 버튼
-            btnSigninSignup.setOnClickListener {
+            tvSigninSignup.setOnClickListener {
                 launcher.launch(Intent(this@SignInActivity, SignUpActivity::class.java))
             }
         }

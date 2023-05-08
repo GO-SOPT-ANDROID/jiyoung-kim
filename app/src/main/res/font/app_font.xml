@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- scdream -->
+    <font
+        android:font="@font/scdream_black"
+        android:fontStyle="normal"
+        android:textFontWeight="900" />
+    <font
+        android:font="@font/scdream_extrabold"
+        android:fontStyle="normal"
+        android:textFontWeight="800" />
+    <font
+        android:font="@font/scdream_bold"
+        android:fontStyle="normal"
+        android:textFontWeight="700" />
+    <font
+        android:font="@font/scdream_semibold"
+        android:fontStyle="normal"
+        android:textFontWeight="600" />
+    <font
+        android:font="@font/scdream_medium"
+        android:fontStyle="normal"
+        android:textFontWeight="500" />
+    <font
+        android:font="@font/scdream_normal"
+        android:fontStyle="normal"
+        android:textFontWeight="400" />
+    <font
+        android:font="@font/scdream_light"
+        android:fontStyle="normal"
+        android:textFontWeight="300" />
+    <font
+        android:font="@font/scdream_extralight"
+        android:fontStyle="normal"
+        android:textFontWeight="200" />
+    <font
+        android:font="@font/scdream_thin"
+        android:fontStyle="normal"
+        android:textFontWeight="100" />
+
+</font-family>

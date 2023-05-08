@@ -3,8 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,6 +12,7 @@
             android:name="org.android.go.sopt.presentation.main.home.HomeFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="?colorSecondaryVariant"
             app:layout_constraintBottom_toTopOf="@id/bnv_main"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +21,7 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_main"
+            app:itemIconTint="@drawable/bottom_navigation_selector"
             android:layout_width="0dp"
             android:layout_height="56dp"
             app:layout_constraintBottom_toBottomOf="parent"

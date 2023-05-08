@@ -16,7 +16,7 @@ class HomeViewModel : ViewModel() {
             Music(R.drawable.kitkat, 7, "Hoody(후디)", "Baby Oh Baby"),
             Music(R.drawable.kitkat, 8, "ASH ISLAND", "Play (Prod. TOIL)"),
             Music(R.drawable.kitkat, 9, "SZA", "I Hate U"),
-            Music(R.drawable.kitkat, 10, "처음 마주쳤을 때처럼", "TOIL, GIST")
+            Music(R.drawable.kitkat, 10, "TOIL, GIST", "처음 마주쳤을 때처럼")
 
         )
 }
