@@ -2,6 +2,7 @@ package org.android.go.sopt.presentation.auth
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.data.datasource.remote.ServicePool
@@ -9,6 +10,7 @@ import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.data.model.request.RequestSignUpDto
 import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
+import org.android.go.sopt.util.addSourceList
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,9 +23,10 @@ class SignUpViewModel(
     val name: MutableLiveData<String> = MutableLiveData()
     val specialty: MutableLiveData<String> = MutableLiveData()
     private var myInfo: MyInfo? = null
-    private val _isSignUpValid = MutableLiveData(false)
-    val isSignUpValid: LiveData<Boolean>
-        get() = _isSignUpValid
+
+    val isEnabledSignUpBtn = MediatorLiveData<Boolean>().apply {
+        addSourceList(id, pwd, name, specialty) { checkSignUpValid() }
+    }
 
     private val _isSignUpSuccess = MutableLiveData(false)
     val isSignUpSuccess: LiveData<Boolean>
@@ -47,10 +50,8 @@ class SignUpViewModel(
         }
     }
 
-    fun signUpValid() {
-        _isSignUpValid.value =
-            id.value!!.length in 6..10 && pwd.value!!.length in 8..12 && !name.value.isNullOrBlank() && !specialty.value.isNullOrBlank()
-    }
+    private fun checkSignUpValid() =
+        id.value?.length in 6..10 && pwd.value?.length in 8..12 && !name.value.isNullOrBlank() && !specialty.value.isNullOrBlank()
 
     fun saveUserInfo() {
         authRepository.updateUserInfo(getInfo())

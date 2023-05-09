@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/shape_light_green_radius_10"
+            android:background="@drawable/shape_light_grey_radius_10"
             android:text="@string/btn_mypage_withdraw"
             android:textAppearance="?textAppearanceBodyMedium"
             app:layout_constraintBottom_toBottomOf="parent"

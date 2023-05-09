@@ -19,7 +19,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
         binding.vm = viewModel
-        observeSignUpValid()
         hideKeyBoard()
         clickSignUpBtn()
     }
@@ -28,25 +27,14 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         binding.btnSignupRegister.setOnClickListener {
             Log.d("SignUp", viewModel.getInfo().toString())
             signUpInfo = viewModel.getInfo()
-            viewModel.signUpValid()
-            viewModel.saveUserInfo()
-        }
-    }
-
-    private fun observeSignUpValid() {
-        viewModel.isSignUpValid.observe(this) {
-            when (it) {
-                true -> {
-                    val intent = Intent(this, SignInActivity::class.java).apply {
-                        Log.d("SignUp", signUpInfo.toString())
-                        putExtra("myInfo", signUpInfo)
-                    }
-                    setResult(RESULT_OK, intent)
-                    finish()
+            if (signUpInfo != null) {
+                viewModel.saveUserInfo()
+                val intent = Intent(this, SignInActivity::class.java).apply {
+                    Log.d("SignUp", signUpInfo.toString())
+                    putExtra("myInfo", signUpInfo)
                 }
-                else -> {
-                    Log.d("SignUp", "회원가입 실패")
-                }
+                setResult(RESULT_OK, intent)
+                finish()
             }
         }
     }

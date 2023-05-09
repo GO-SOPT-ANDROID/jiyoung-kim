@@ -35,7 +35,6 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
-        observeSignInValid()
         observeAutoSignIn()
         hideKeyBoard()
         clickButton()
@@ -47,7 +46,8 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         }
     }
 
-    private fun observeSignInValid() {
+    /*
+        private fun observeSignInValid() {
         viewModel.isSignInValid.observe(this) {
             Log.d("SignIn", "isSignInValid :: ${viewModel.isSignInValid.value}")
             if (viewModel.isSignInValid.value == true) {
@@ -62,6 +62,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             }
         }
     }
+     */
 
     private fun observeAutoSignIn() {
         viewModel.isAutoSignInValid.observe(this) {
@@ -82,18 +83,14 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         with(binding) {
             // 로그인 버튼
             btnSigninBottom.setOnClickListener {
-                Log.d("엥", "내가 입력한 id:: ${viewModel.id.value}")
-                Log.d("엥", "내가 입력한 pwd:: ${viewModel.pwd.value}")
+                Log.d("SignIn", "내가 입력한 id:: ${viewModel.id.value}")
+                Log.d("SignIn", "내가 입력한 pwd:: ${viewModel.pwd.value}")
                 Log.d(
-                    "엥",
+                    "SignIn",
                     "ss :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.specialty}"
                 )
-                if (signUpInfo?.id!!.isNotEmpty() && signUpInfo?.pwd!!.isNotEmpty()) {
-                    Log.d("엥", "48")
-                    viewModel.signInValid(signUpInfo!!.id, signUpInfo!!.pwd)
-                } else {
-                    binding.root.showToast("로그인 정보를 입력해주세요")
-                }
+                viewModel.signInValid(signUpInfo!!.id, signUpInfo!!.pwd)
+                root.showToast("로그인 성공!")
             }
 
             // 회원가입 버튼

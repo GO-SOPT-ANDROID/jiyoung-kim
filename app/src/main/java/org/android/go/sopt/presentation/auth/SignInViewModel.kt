@@ -2,10 +2,12 @@ package org.android.go.sopt.presentation.auth
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.domain.repository.AuthRepository
+import org.android.go.sopt.util.addSourceList
 
 class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() {
     val id: MutableLiveData<String> = MutableLiveData()
@@ -18,9 +20,9 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
     val isAutoSignInValid: LiveData<Boolean>
         get() = _isAutoSignInValid
 
-    private val _isInputEmpty = MutableLiveData(true)
-    val isInputEmpty: LiveData<Boolean>
-        get() = _isInputEmpty
+    val isEnabledSignInBtn = MediatorLiveData<Boolean>().apply {
+        addSourceList(id, pwd) { checkSignInValid() }
+    }
 
     init {
         setAutoLogin()
@@ -34,9 +36,8 @@ class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() 
         Log.d("SignInViewmodel", _isSignInValid.value.toString())
     }
 
-    fun checkInputEmpty() {
-        _isInputEmpty.value = !(id.value.isNullOrBlank() || pwd.value.isNullOrBlank())
-    }
+    private fun checkSignInValid() =
+        !id.value.isNullOrBlank() && !pwd.value.isNullOrBlank()
 
     private fun setAutoLogin() {
         if (authRepository.getAutoLogin() && authRepository.readUserInfo() != null) {
