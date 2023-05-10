@@ -7,7 +7,10 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import org.android.go.sopt.data.model.MyInfo
 
-class AuthDataSource(applicationContext: Context) {
+/*
+Shared Preference와 같은 local data를 관리하는 data source
+ */
+class AuthLocalDataSource(applicationContext: Context) {
     private val masterKey = MasterKey
         .Builder(applicationContext, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
