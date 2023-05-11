@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object RetrofitModule {
     private const val AUTH_BASE_URL = BuildConfig.AUTH_BASE_URL
 
     private val loggingInterceptor =

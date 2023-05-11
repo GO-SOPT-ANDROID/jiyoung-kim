@@ -15,11 +15,11 @@ import javax.inject.Singleton
 object ServiceModule {
     @Singleton
     @Provides
-    fun provideAuthService(@NetworkModule.Retrofit2(BaseUrlType.AUTH) retrofit: Retrofit): AuthService =
+    fun provideAuthService(@RetrofitModule.Retrofit2(BaseUrlType.AUTH) retrofit: Retrofit): AuthService =
         retrofit.create(AuthService::class.java)
 
     @Singleton
     @Provides
-    fun provideReqresService(@NetworkModule.Retrofit2(BaseUrlType.REQRES) retrofit: Retrofit): ReqresService =
+    fun provideReqresService(@RetrofitModule.Retrofit2(BaseUrlType.REQRES) retrofit: Retrofit): ReqresService =
         retrofit.create(ReqresService::class.java)
 }

@@ -3,9 +3,7 @@ package org.android.go.sopt.presentation.auth
 import android.util.Log
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import org.android.go.sopt.data.model.MyInfo
-import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
 import org.android.go.sopt.util.addSourceList
 import javax.inject.Inject
@@ -27,11 +25,6 @@ class SignUpViewModel
     val isSignUpSuccess: LiveData<Boolean>
         get() = _isSignUpSuccess
 
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
-
-    val signUpResult: MutableLiveData<ResponseSignUpDto> = MutableLiveData()
-
     fun getInfo(): MyInfo {
         return MyInfo(
             id.value.toString(),
@@ -48,17 +41,18 @@ class SignUpViewModel
 
     fun saveUserInfo() {
         authRepository.updateUserInfo(getInfo())
+        signUp()
     }
 
-    fun signUp(id: String, password: String, name: String, skill: String?) {
-        viewModelScope.launch {
-            authRepository.signUp(id, password, name, skill)
-                .onSuccess {
-                    _isSignUpSuccess.value = true
-                }.onFailure {
-                    _isSignUpSuccess.value = false
-                }
+    fun signUp() {
+        runCatching {
+            authRepository.signUp(id.value.toString(), pwd.value.toString(), name.value.toString(), specialty.value.toString())
         }
+            .onSuccess {
+                _isSignUpSuccess.value = true
+            }.onFailure {
+                _isSignUpSuccess.value = false
+            }
         Log.d("signUp", "_isSignUpSuccess :: ${_isSignUpSuccess.value}")
     }
 }

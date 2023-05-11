@@ -31,9 +31,9 @@ class AuthRepositoryImpl @Inject constructor(
         runCatching {
             authLocalDataSource.setUserInfo(userInfo)
         }.onSuccess {
-            Log.d("auth", "회원 update 성공")
+            Log.d("auth", "회원 local data update 성공")
         }.onFailure {
-            Log.d("auth", "회원 update 실패...")
+            Log.d("auth", "회원 local data update 실패...")
         }
     }
 

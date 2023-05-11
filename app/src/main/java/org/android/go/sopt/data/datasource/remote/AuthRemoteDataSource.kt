@@ -14,6 +14,6 @@ class AuthRemoteDataSource @Inject constructor(private val authService: AuthServ
     fun signUp(signUpRequest: RequestSignUpDto): ResponseSignUpDto =
         authService.signUp(signUpRequest)
 
-    fun signIn(signInResult: RequestSignInDto): ResponseSignInDto =
-        authService.signIn(signInResult)
+    fun signIn(signInRequest: RequestSignInDto): ResponseSignInDto =
+        authService.signIn(signInRequest)
 }

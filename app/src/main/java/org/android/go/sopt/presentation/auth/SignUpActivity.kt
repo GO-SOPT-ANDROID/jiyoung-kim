@@ -29,19 +29,12 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             signUpInfo = viewModel.getInfo()
             Log.d("SignUp", "signUpInfo :: $signUpInfo")
             viewModel.saveUserInfo()
-            viewModel.signUp(
-                signUpInfo?.id.toString(),
-                signUpInfo?.pwd.toString(),
-                signUpInfo?.name.toString(),
-                signUpInfo?.specialty.toString()
-            )
             observeSignUpResult()
         }
     }
 
     private fun observeSignUpResult() {
         viewModel.isSignUpSuccess.observe(this) {
-            Log.d("SignUpp", "isSignUpSuccess :: ${viewModel.isSignUpSuccess.value?.toString()}")
             if (viewModel.isSignUpSuccess.value == true) {
                 intentToSignInActivity()
             } else {

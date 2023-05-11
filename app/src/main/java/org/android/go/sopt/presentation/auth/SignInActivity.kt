@@ -67,13 +67,12 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         with(binding) {
             // 로그인 버튼
             btnSigninBottom.setOnClickListener {
-                Log.d("SignIn", "내가 입력한 id:: ${viewModel.id.value}")
-                Log.d("SignIn", "내가 입력한 pwd:: ${viewModel.pwd.value}")
                 Log.d(
                     "SignIn",
-                    "ss :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.specialty}"
+                    "회원 데이터 :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.specialty}"
                 )
-                viewModel.signInValid(signUpInfo!!.id, signUpInfo!!.pwd)
+                viewModel.signIn()
+//                viewModel.signInValid(signUpInfo?.id.toString(), signUpInfo?.pwd.toString())
                 root.showToast("로그인 성공!")
             }
 
