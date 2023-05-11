@@ -2,15 +2,17 @@ package org.android.go.sopt.presentation.auth
 
 import android.util.Log
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
 import org.android.go.sopt.util.addSourceList
+import javax.inject.Inject
 
-class SignUpViewModel(
-    private val authRepository: AuthRepository
-) : ViewModel() {
+@HiltViewModel
+class SignUpViewModel
+@Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
     val id: MutableLiveData<String> = MutableLiveData()
     val pwd: MutableLiveData<String> = MutableLiveData()
     val name: MutableLiveData<String> = MutableLiveData()

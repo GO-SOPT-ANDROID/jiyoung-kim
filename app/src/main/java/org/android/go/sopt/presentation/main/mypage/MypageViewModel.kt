@@ -2,10 +2,14 @@ package org.android.go.sopt.presentation.main.mypage
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.domain.repository.AuthRepository
+import javax.inject.Inject
 
-class MypageViewModel(private val authRepository: AuthRepository) : ViewModel() {
+@HiltViewModel
+class MypageViewModel @Inject constructor(private val authRepository: AuthRepository) :
+    ViewModel() {
     val userInfo = MutableLiveData<MyInfo>()
 
     init {

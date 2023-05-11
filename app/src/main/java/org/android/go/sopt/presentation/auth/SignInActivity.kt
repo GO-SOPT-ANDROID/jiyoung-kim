@@ -5,14 +5,16 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
 import org.android.go.sopt.util.*
 
+@AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
-    private val viewModel: SignInViewModel by viewModels { (ViewModelFactory(applicationContext)) }
+    private val viewModel: SignInViewModel by viewModels()
     private var signUpInfo: MyInfo? = null
 
     private val launcher =

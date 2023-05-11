@@ -5,11 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.domain.repository.AuthRepository
 import org.android.go.sopt.util.addSourceList
-
-class SignInViewModel(private val authRepository: AuthRepository) : ViewModel() {
+import javax.inject.Inject
+@HiltViewModel
+class SignInViewModel @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
     val id: MutableLiveData<String> = MutableLiveData()
     val pwd: MutableLiveData<String> = MutableLiveData()
     private lateinit var myInfo: MyInfo

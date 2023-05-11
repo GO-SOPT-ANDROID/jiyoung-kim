@@ -6,10 +6,12 @@ import org.android.go.sopt.data.datasource.remote.AuthRemoteDataSource
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.data.model.request.RequestSignInDto
 import org.android.go.sopt.data.model.request.RequestSignUpDto
+import org.android.go.sopt.data.model.response.ResponseSignInDto
 import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
+class AuthRepositoryImpl @Inject constructor(
     private val authLocalDataSource: AuthLocalDataSource,
     private val authRemoteDataSource: AuthRemoteDataSource
 ) : AuthRepository {
@@ -67,7 +69,7 @@ class AuthRepositoryImpl(
             Log.d("auth", "회원가입 실패..")
         }
 
-    override fun signIn(id: String, password: String) {
+    override fun signIn(id: String, password: String): Result<ResponseSignInDto> =
         runCatching {
             authRemoteDataSource.signIn(RequestSignInDto(id, password))
         }.onSuccess {
@@ -75,5 +77,4 @@ class AuthRepositoryImpl(
         }.onFailure {
             Log.d("auth", "로그인 실패..")
         }
-    }
 }

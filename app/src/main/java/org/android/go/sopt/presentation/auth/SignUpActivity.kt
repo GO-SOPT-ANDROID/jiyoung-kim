@@ -4,16 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.BindingActivity
-import org.android.go.sopt.util.ViewModelFactory
 import org.android.go.sopt.util.hideKeyboard
 import org.android.go.sopt.util.showSnackbar
 
+@AndroidEntryPoint
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
-    private val viewModel: SignUpViewModel by viewModels { (ViewModelFactory(applicationContext)) }
+    private val viewModel: SignUpViewModel by viewModels()
     private var signUpInfo: MyInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
