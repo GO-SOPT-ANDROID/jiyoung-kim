@@ -146,7 +146,7 @@
                     android:textAppearance="?textAppearanceBodyMedium"
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
-                    android:text="@={vm.specialty}"
+                    android:text="@={vm.skill}"
                     android:background="@drawable/shape_white_radius_10"
                     android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/btn_signup_register"

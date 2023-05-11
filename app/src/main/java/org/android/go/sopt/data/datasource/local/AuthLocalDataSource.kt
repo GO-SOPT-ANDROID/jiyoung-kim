@@ -60,7 +60,7 @@ class AuthLocalDataSource @Inject constructor(@ApplicationContext applicationCon
             setString(USER_ID, info.id)
             setString(USER_PASSWORD, info.pwd)
             setString(USER_NAME, info.name)
-            setString(USER_SPECIALTY, info.specialty)
+            setString(USER_SPECIALTY, info.skill)
         }
     }
 
