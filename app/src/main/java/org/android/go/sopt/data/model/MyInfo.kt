@@ -8,5 +8,5 @@ data class MyInfo(
     val id: String,
     val pwd: String,
     val name: String,
-    val specialty: String
+    val skill: String
 ) : Parcelable
