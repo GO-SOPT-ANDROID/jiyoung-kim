@@ -4,6 +4,8 @@ plugins {
     // Parcelize
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    //hilt
+    id 'dagger.hilt.android.plugin'
 }
 
 Properties properties = new Properties()
@@ -81,4 +83,12 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
 
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.44"
+
+}
+// hilt dependency와 함께 추가
+kapt {
+    correctErrorTypes true
 }
