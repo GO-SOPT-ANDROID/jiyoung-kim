@@ -69,7 +69,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             btnSigninBottom.setOnClickListener {
                 Log.d(
                     "SignIn",
-                    "회원 데이터 :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.specialty}"
+                    "회원 데이터 :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.skill}"
                 )
                 viewModel.signIn()
 //                viewModel.signInValid(signUpInfo?.id.toString(), signUpInfo?.pwd.toString())

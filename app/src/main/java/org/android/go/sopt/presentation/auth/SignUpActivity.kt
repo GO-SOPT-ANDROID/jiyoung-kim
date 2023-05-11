@@ -40,6 +40,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             } else {
                 binding.root.showSnackbar("회원가입 실패ㅠ")
             }
+            Log.d("signUp", "isSignUpSuccess :: ${viewModel.isSignUpSuccess.value}")
         }
     }
 

@@ -1,37 +1,31 @@
 package org.android.go.sopt.presentation.main.search
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
+import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentSearchBinding
+import org.android.go.sopt.util.BindingFragment
 
-class SearchFragment : Fragment() {
-
-    private var _binding: FragmentSearchBinding? = null
-    private val binding: FragmentSearchBinding
-        get() = requireNotNull(_binding) { "앗 ! _binding이 null이다 !" }
+@AndroidEntryPoint
+class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {
+    private val viewModel: SearchViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val memberAdapter = SearchMemberListAdapter()
+        setAdapter(memberAdapter)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun setAdapter(adapter: SearchMemberListAdapter) {
+        viewModel.soptMembers.observe(viewLifecycleOwner) {
+            binding.rcvSearchView.adapter = adapter
+            adapter.submitList(viewModel.soptMembers.value)
+        }
     }
 }
