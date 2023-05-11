@@ -12,7 +12,7 @@ import org.android.go.sopt.databinding.ActivitySignInBinding
 import org.android.go.sopt.util.*
 
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
-    private val viewModel: SignInViewModel by viewModels { (ViewModelFactory(applicationContext)) }
+    private val viewModel: SignInViewModel by viewModels()
     private var signUpInfo: MyInfo? = null
 
     private val launcher =
@@ -45,24 +45,6 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             it.hideKeyboard()
         }
     }
-
-    /*
-        private fun observeSignInValid() {
-        viewModel.isSignInValid.observe(this) {
-            Log.d("SignIn", "isSignInValid :: ${viewModel.isSignInValid.value}")
-            if (viewModel.isSignInValid.value == true) {
-                binding.root.showToast("로그인 성공!")
-                Intent(this, MainActivity::class.java).apply {
-                    putExtra("myInfo", signUpInfo)
-                    startActivity(this)
-                    finish()
-                }
-            } else {
-                Log.d("SignIn", "정보를 다시 입력해주세요")
-            }
-        }
-    }
-     */
 
     private fun observeAutoSignIn() {
         viewModel.isAutoSignInValid.observe(this) {

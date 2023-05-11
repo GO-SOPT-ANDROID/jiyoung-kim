@@ -10,6 +10,7 @@ import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.BindingActivity
 import org.android.go.sopt.util.ViewModelFactory
 import org.android.go.sopt.util.hideKeyboard
+import org.android.go.sopt.util.showSnackbar
 
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     private val viewModel: SignUpViewModel by viewModels { (ViewModelFactory(applicationContext)) }
@@ -17,7 +18,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.lifecycleOwner = this
         binding.vm = viewModel
         hideKeyBoard()
         clickSignUpBtn()
@@ -25,18 +25,37 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
 
     private fun clickSignUpBtn() {
         binding.btnSignupRegister.setOnClickListener {
-            Log.d("SignUp", viewModel.getInfo().toString())
             signUpInfo = viewModel.getInfo()
-            if (signUpInfo != null) {
-                viewModel.saveUserInfo()
-                val intent = Intent(this, SignInActivity::class.java).apply {
-                    Log.d("SignUp", signUpInfo.toString())
-                    putExtra("myInfo", signUpInfo)
-                }
-                setResult(RESULT_OK, intent)
-                finish()
+            Log.d("SignUp", "signUpInfo :: $signUpInfo")
+            viewModel.saveUserInfo()
+            viewModel.signUp(
+                signUpInfo?.id.toString(),
+                signUpInfo?.pwd.toString(),
+                signUpInfo?.name.toString(),
+                signUpInfo?.specialty.toString()
+            )
+            observeSignUpResult()
+        }
+    }
+
+    private fun observeSignUpResult() {
+        viewModel.isSignUpSuccess.observe(this) {
+            Log.d("SignUpp", "isSignUpSuccess :: ${viewModel.isSignUpSuccess.value?.toString()}")
+            if (viewModel.isSignUpSuccess.value == true) {
+                intentToSignInActivity()
+            } else {
+                binding.root.showSnackbar("회원가입 실패ㅠ")
             }
         }
+    }
+
+    private fun intentToSignInActivity() {
+        val intent = Intent(this, SignInActivity::class.java).apply {
+            Log.d("SignUp", "signUpInfo :: $signUpInfo")
+            putExtra("myInfo", signUpInfo)
+        }
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
     private fun hideKeyBoard() {
