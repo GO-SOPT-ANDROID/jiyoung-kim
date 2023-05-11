@@ -7,7 +7,6 @@ import org.android.go.sopt.data.model.MyInfo
 import org.android.go.sopt.data.model.request.RequestSignInDto
 import org.android.go.sopt.data.model.request.RequestSignUpDto
 import org.android.go.sopt.data.model.response.ResponseSignInDto
-import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -53,21 +52,21 @@ class AuthRepositoryImpl @Inject constructor(
         password: String,
         name: String,
         skill: String?
-    ): Result<ResponseSignUpDto> =
-        runCatching {
-            authRemoteDataSource.signUp(
-                RequestSignUpDto(
-                    id,
-                    password,
-                    name,
-                    skill
-                )
-            )
-        }.onSuccess {
-            Log.d("auth", "회원가입 성공 !!")
-        }.onFailure {
-            Log.d("auth", "회원가입 실패..")
-        }
+    ) = authRemoteDataSource.signUp(RequestSignUpDto(id, password, name, skill))
+//        runCatching {
+//            authRemoteDataSource.signUp(
+//                RequestSignUpDto(
+//                    id,
+//                    password,
+//                    name,
+//                    skill
+//                )
+//            )
+//        }.onSuccess {
+//            Log.d("auth", "회원가입 성공 !!")
+//        }.onFailure {
+//            Log.d("auth", it.stackTrace.joinToString("\n"))
+//        }
 
     override fun signIn(id: String, password: String): Result<ResponseSignInDto> =
         runCatching {

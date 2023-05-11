@@ -28,6 +28,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         binding.btnSignupRegister.setOnClickListener {
             signUpInfo = viewModel.getInfo()
             Log.d("SignUp", "signUpInfo :: $signUpInfo")
+            Log.d("SignUp", "signUpInfo :: ${signUpInfo?.id ?: "id null"}")
             viewModel.saveUserInfo()
             observeSignUpResult()
         }
