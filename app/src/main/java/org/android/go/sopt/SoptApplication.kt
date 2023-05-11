@@ -1,7 +1,7 @@
 package org.android.go.sopt
 
 import android.app.Application
-import org.android.go.sopt.data.datasource.local.AuthDataSource
+import org.android.go.sopt.data.datasource.local.AuthLocalDataSource
 
 /*
 SharedPreferences 클래스는 앱에 있는 다른 액티비티보다 먼저 생성되어야 다른 곳에 데이터를 넘겨줄 수 있다.
@@ -11,11 +11,11 @@ Application()을 상속받는 MyApplication 클래스를 생성하여, onCreate(
 class SoptApplication : Application() {
 
     override fun onCreate() {
-        prefs = AuthDataSource(applicationContext)
+        prefs = AuthLocalDataSource(applicationContext)
         super.onCreate()
     }
 
     companion object {
-        lateinit var prefs: AuthDataSource
+        lateinit var prefs: AuthLocalDataSource
     }
 }
