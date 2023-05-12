@@ -1,7 +1,9 @@
 package org.android.go.sopt.data.model
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Member(
     @SerialName("id")
     val id: Int,

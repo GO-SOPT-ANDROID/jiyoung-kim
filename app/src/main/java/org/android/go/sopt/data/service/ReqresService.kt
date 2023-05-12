@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface ReqresService {
     @GET("/api/users")
-    fun getSoptMembers(
+    suspend fun getSoptMembers(
         @Query("page") num: Int = 2
     ): ResponseMemberDto
 }

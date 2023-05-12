@@ -6,6 +6,8 @@ plugins {
     id 'kotlin-kapt'
     //hilt
     id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
+    
 }
 
 Properties properties = new Properties()
