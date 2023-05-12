@@ -52,14 +52,18 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         viewModel.isAutoSignInValid.observe(this) {
             when (it) {
                 true -> {
-                    Intent(this, MainActivity::class.java).apply {
-                        startActivity(this)
-                    }
+                    intentToMainActivity()
                 }
                 else -> {
                     Log.d("SignIn", "자동 로그인 오류")
                 }
             }
+        }
+    }
+
+    private fun intentToMainActivity() {
+        Intent(this, MainActivity::class.java).apply {
+            startActivity(this)
         }
     }
 
@@ -69,16 +73,26 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             btnSigninBottom.setOnClickListener {
                 Log.d(
                     "SignIn",
-                    "회원 데이터 :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.skill}"
+                    "회원 데이터 :: ${viewModel.id.value?.toString()} ooo ${viewModel.pwd.value?.toString()} 000 ${signUpInfo?.name} 000 ${signUpInfo?.skill}"
                 )
-                viewModel.signIn()
-//                viewModel.signInValid(signUpInfo?.id.toString(), signUpInfo?.pwd.toString())
-                root.showToast("로그인 성공!")
+                viewModel.signInValid(viewModel.id.value.toString(), viewModel.pwd.value.toString())
+                observeSignInResult()
             }
 
             // 회원가입 버튼
             tvSigninSignup.setOnClickListener {
                 launcher.launch(Intent(this@SignInActivity, SignUpActivity::class.java))
+            }
+        }
+    }
+
+    private fun observeSignInResult() {
+        viewModel.isSignInSuccess.observe(this) {
+            if (viewModel.isSignInSuccess.value == true) {
+                binding.root.showToast("로그인 성공!")
+                intentToMainActivity()
+            } else {
+                binding.root.showSnackbar("로그인 실패ㅠ")
             }
         }
     }

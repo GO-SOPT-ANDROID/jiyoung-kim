@@ -36,6 +36,7 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
     fun signInValid(signUpId: String, signUpPwd: String) {
         if (id.value == signUpId && pwd.value == signUpPwd) {
             authRepository.setAutoLogin(true)
+            signIn()
             _isSignInValid.value = true
         }
         Log.d("SignInViewmodel", _isSignInValid.value.toString())
@@ -58,12 +59,11 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
     fun signIn() {
         runCatching {
             authRepository.signIn(id.value.toString(), pwd.value.toString())
-                .onSuccess {
-                    _isSignInSuccess.value = true
-                }
-                .onFailure {
-                    _isSignInSuccess.value = false
-                }
+        }.onSuccess {
+            _isSignInSuccess.value = true
         }
+            .onFailure {
+                _isSignInSuccess.value = false
+            }
     }
 }

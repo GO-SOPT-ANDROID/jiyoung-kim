@@ -44,12 +44,17 @@ class SignUpViewModel
     }
 
     private fun signUp() {
-        authRepository.signUp(
-            id.value.toString(),
-            pwd.value.toString(),
-            name.value.toString(),
-            skill.value.toString()
-        )
-        _isSignUpSuccess.value = true
+        runCatching {
+            authRepository.signUp(
+                id.value.toString(),
+                pwd.value.toString(),
+                name.value.toString(),
+                skill.value.toString()
+            )
+        }.onSuccess {
+            _isSignUpSuccess.value = true
+        }.onFailure {
+            _isSignUpSuccess.value = false
+        }
     }
 }
