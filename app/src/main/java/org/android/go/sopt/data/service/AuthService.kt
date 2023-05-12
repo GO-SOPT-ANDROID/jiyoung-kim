@@ -17,5 +17,5 @@ interface AuthService {
     @POST("/sign-in")
     fun signIn(
         @Body body: RequestSignInDto
-    ): ResponseSignInDto
+    ): Call<ResponseSignInDto>
 }

@@ -1,7 +1,6 @@
 package org.android.go.sopt.domain.repository
 
 import org.android.go.sopt.data.model.MyInfo
-import org.android.go.sopt.data.model.response.ResponseSignInDto
 
 /*
 Shared Preference 관련 repository
@@ -21,5 +20,5 @@ interface AuthRepository {
         skill: String?
     )
 
-    fun signIn(id: String, password: String): Result<ResponseSignInDto>
+    fun signIn(id: String, password: String)
 }
