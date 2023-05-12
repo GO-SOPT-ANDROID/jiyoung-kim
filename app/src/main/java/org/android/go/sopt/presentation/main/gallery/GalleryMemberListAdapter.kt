@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.main.search
+package org.android.go.sopt.presentation.main.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,17 +7,17 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
 import org.android.go.sopt.data.model.Member
-import org.android.go.sopt.databinding.ItemSearchMemberBinding
+import org.android.go.sopt.databinding.ItemGalleryMemberBinding
 import org.android.go.sopt.util.ItemDiffCallback
 
-class SearchMemberListAdapter :
-    ListAdapter<Member, SearchMemberListAdapter.MemberViewHolder>(
+class GalleryMemberListAdapter :
+    ListAdapter<Member, GalleryMemberListAdapter.MemberViewHolder>(
         ItemDiffCallback<Member>(
             onContentsTheSame = { old, new -> old == new },
             onItemsTheSame = { old, new -> old == new }
         )
     ) {
-    class MemberViewHolder(private val binding: ItemSearchMemberBinding) :
+    class MemberViewHolder(private val binding: ItemGalleryMemberBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(data: Member) = with(binding) {
             tvItemMemberName.text = data.firstName
@@ -30,7 +30,7 @@ class SearchMemberListAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
         val binding =
-            ItemSearchMemberBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemGalleryMemberBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MemberViewHolder(binding)
     }
 

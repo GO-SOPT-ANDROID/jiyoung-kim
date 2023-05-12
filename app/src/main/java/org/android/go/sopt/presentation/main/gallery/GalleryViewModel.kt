@@ -1,4 +1,4 @@
-package org.android.go.sopt.presentation.main.search
+package org.android.go.sopt.presentation.main.gallery
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -12,7 +12,7 @@ import org.android.go.sopt.domain.repository.ReqresRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val reqresRepository: ReqresRepository) :
+class GalleryViewModel @Inject constructor(private val reqresRepository: ReqresRepository) :
     ViewModel() {
 
     private val _soptMembers = MutableLiveData<List<Member>>()
@@ -24,11 +24,12 @@ class SearchViewModel @Inject constructor(private val reqresRepository: ReqresRe
 
     private fun getSoptMembers() {
         viewModelScope.launch {
-            reqresRepository.getSoptMembers()
-                .onSuccess { response ->
-                    Log.d("reqres", "1단계 성공")
-                    _soptMembers.value = response.data
-                }
+            reqresRepository.getSoptMembers().onSuccess { response ->
+                Log.d("reqres", "1단계 성공")
+                _soptMembers.value = response.data
+            }.onFailure { error ->
+                Log.d("reqres", "1단계 실패: ${error.message}")
+            }
         }
     }
 }
