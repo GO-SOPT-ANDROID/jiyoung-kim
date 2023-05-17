@@ -2,7 +2,7 @@ package org.android.go.sopt.data.model.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.android.go.sopt.data.model.Member
+import org.android.go.sopt.data.entity.Member
 
 @Serializable
 data class ResponseMemberDto(

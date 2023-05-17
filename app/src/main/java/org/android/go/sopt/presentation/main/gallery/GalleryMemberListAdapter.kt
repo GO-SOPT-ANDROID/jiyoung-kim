@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import org.android.go.sopt.data.model.Member
+import org.android.go.sopt.data.entity.Member
 import org.android.go.sopt.databinding.ItemGalleryMemberBinding
 import org.android.go.sopt.util.ItemDiffCallback
 
