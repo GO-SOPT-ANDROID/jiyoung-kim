@@ -5,9 +5,14 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import org.android.go.sopt.data.model.MyInfo
+import dagger.hilt.android.qualifiers.ApplicationContext
+import org.android.go.sopt.data.entity.MyInfo
+import javax.inject.Inject
 
-class AuthDataSource(applicationContext: Context) {
+/*
+Shared Preference와 같은 local data를 관리하는 data source
+ */
+class AuthLocalDataSource @Inject constructor(@ApplicationContext applicationContext: Context) {
     private val masterKey = MasterKey
         .Builder(applicationContext, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
@@ -55,7 +60,7 @@ class AuthDataSource(applicationContext: Context) {
             setString(USER_ID, info.id)
             setString(USER_PASSWORD, info.pwd)
             setString(USER_NAME, info.name)
-            setString(USER_SPECIALTY, info.specialty)
+            setString(USER_SPECIALTY, info.skill)
         }
     }
 

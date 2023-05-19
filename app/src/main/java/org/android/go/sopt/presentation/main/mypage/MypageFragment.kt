@@ -9,12 +9,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.databinding.FragmentMypageBinding
 import org.android.go.sopt.presentation.auth.SignInActivity
-import org.android.go.sopt.util.ViewModelFactory
 
+@AndroidEntryPoint
 class MypageFragment : Fragment() {
-    private val viewModel: MypageViewModel by viewModels { (ViewModelFactory(requireContext())) }
+    private val viewModel: MypageViewModel by viewModels()
 
     private var _binding: FragmentMypageBinding? = null
     private val binding: FragmentMypageBinding

@@ -1,81 +1,73 @@
 package org.android.go.sopt.presentation.auth
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import org.android.go.sopt.data.datasource.remote.ServicePool
-import org.android.go.sopt.data.model.MyInfo
+import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.data.model.request.RequestSignUpDto
 import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.android.go.sopt.util.addSourceList
+import javax.inject.Inject
 
-class SignUpViewModel(
-    private val authRepository: AuthRepository
-) : ViewModel() {
+@HiltViewModel
+class SignUpViewModel
+@Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
     val id: MutableLiveData<String> = MutableLiveData()
     val pwd: MutableLiveData<String> = MutableLiveData()
     val name: MutableLiveData<String> = MutableLiveData()
-    val specialty: MutableLiveData<String> = MutableLiveData()
+    val skill: MutableLiveData<String> = MutableLiveData()
     private var myInfo: MyInfo? = null
-    private val _isSignUpValid = MutableLiveData(false)
-    val isSignUpValid: LiveData<Boolean>
-        get() = _isSignUpValid
+
+    val isEnabledSignUpBtn = MediatorLiveData<Boolean>().apply {
+        addSourceList(id, pwd, name, skill) { checkSignUpValid() }
+    }
 
     private val _isSignUpSuccess = MutableLiveData(false)
     val isSignUpSuccess: LiveData<Boolean>
         get() = _isSignUpSuccess
 
+    private val _signUpResult: MutableLiveData<ResponseSignUpDto> = MutableLiveData()
     private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
-
-    val signUpResult: MutableLiveData<ResponseSignUpDto> = MutableLiveData()
-
-    private val signUpService = ServicePool.signUpService
+    val errorMessage: LiveData<String> get() = _errorMessage
 
     fun getInfo(): MyInfo {
         return MyInfo(
             id.value.toString(),
             pwd.value.toString(),
             name.value.toString(),
-            specialty.value.toString()
+            skill.value.toString()
         ).also {
             myInfo = it
         }
     }
 
-    fun signUpValid() {
-        _isSignUpValid.value =
-            id.value!!.length in 6..10 && pwd.value!!.length in 8..12 && !name.value.isNullOrBlank() && !specialty.value.isNullOrBlank()
-    }
+    private fun checkSignUpValid() =
+        id.value?.length in 6..10 && pwd.value?.length in 8..12 && !name.value.isNullOrBlank() && !skill.value.isNullOrBlank()
 
     fun saveUserInfo() {
         authRepository.updateUserInfo(getInfo())
+        signUp()
     }
 
-    fun signUp(id: String, pwd: String, name: String, specialty: String) {
-        signUpService.signUp(
-            RequestSignUpDto(id, pwd, name, specialty)
-        ).enqueue(object : Callback<ResponseSignUpDto> {
-            override fun onResponse(
-                call: Call<ResponseSignUpDto>,
-                response: Response<ResponseSignUpDto>
-            ) {
-                Log.d("SignUpActivity", response.body().toString())
-                if (response.isSuccessful) { // 통신 성공
-                    _isSignUpSuccess.value = true
-                    signUpResult.value = response.body()
-                }
-            }
-
-            override fun onFailure(call: Call<ResponseSignUpDto>, t: Throwable) { // 통신 실패
+    private fun signUp() {
+        val requestSignUpDto = RequestSignUpDto(
+            id = id.value.toString(),
+            password = pwd.value.toString(),
+            name = name.value.toString(),
+            skill = skill.value.toString()
+        )
+        viewModelScope.launch {
+            runCatching {
+                authRepository.signUp(
+                    requestSignUpDto
+                )
+            }.onSuccess {
+                _isSignUpSuccess.value = true
+            }.onFailure {
                 _isSignUpSuccess.value = false
-                _errorMessage.value = "네트워크 상태가 좋지 않습니다"
-                Log.e("SignUpActivity", t.message.toString(), t)
+                _errorMessage.value = it.message
             }
-        })
+        }
     }
 }

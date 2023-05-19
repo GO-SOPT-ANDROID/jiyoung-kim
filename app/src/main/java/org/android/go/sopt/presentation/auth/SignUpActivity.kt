@@ -4,51 +4,54 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.MyInfo
+import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.databinding.ActivitySignUpBinding
 import org.android.go.sopt.util.BindingActivity
-import org.android.go.sopt.util.ViewModelFactory
 import org.android.go.sopt.util.hideKeyboard
+import org.android.go.sopt.util.showSnackbar
 
+@AndroidEntryPoint
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
-    private val viewModel: SignUpViewModel by viewModels { (ViewModelFactory(applicationContext)) }
+    private val viewModel: SignUpViewModel by viewModels()
     private var signUpInfo: MyInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.lifecycleOwner = this
         binding.vm = viewModel
-        observeSignUpValid()
         hideKeyBoard()
         clickSignUpBtn()
     }
 
     private fun clickSignUpBtn() {
         binding.btnSignupRegister.setOnClickListener {
-            Log.d("SignUp", viewModel.getInfo().toString())
             signUpInfo = viewModel.getInfo()
-            viewModel.signUpValid()
+            Log.d("SignUp", "signUpInfo :: $signUpInfo")
+            Log.d("SignUp", "signUpInfo :: ${signUpInfo?.id ?: "id null"}")
             viewModel.saveUserInfo()
+            observeSignUpResult()
         }
     }
 
-    private fun observeSignUpValid() {
-        viewModel.isSignUpValid.observe(this) {
-            when (it) {
-                true -> {
-                    val intent = Intent(this, SignInActivity::class.java).apply {
-                        Log.d("SignUp", signUpInfo.toString())
-                        putExtra("myInfo", signUpInfo)
-                    }
-                    setResult(RESULT_OK, intent)
-                    finish()
-                }
-                else -> {
-                    Log.d("SignUp", "회원가입 실패")
-                }
+    private fun observeSignUpResult() {
+        viewModel.isSignUpSuccess.observe(this) {
+            if (viewModel.isSignUpSuccess.value == true) {
+                intentToSignInActivity()
+            } else {
+                binding.root.showSnackbar("회원가입 실패ㅠ")
             }
+            Log.d("signUp", "isSignUpSuccess :: ${viewModel.isSignUpSuccess.value}")
         }
+    }
+
+    private fun intentToSignInActivity() {
+        val intent = Intent(this, SignInActivity::class.java).apply {
+            Log.d("SignUp", "signUpInfo :: $signUpInfo")
+            putExtra("myInfo", signUpInfo)
+        }
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
     private fun hideKeyBoard() {

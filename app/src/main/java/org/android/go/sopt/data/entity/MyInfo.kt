@@ -1,4 +1,4 @@
-package org.android.go.sopt.data.model
+package org.android.go.sopt.data.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -8,5 +8,5 @@ data class MyInfo(
     val id: String,
     val pwd: String,
     val name: String,
-    val specialty: String
+    val skill: String
 ) : Parcelable

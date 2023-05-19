@@ -146,7 +146,7 @@
                     android:textAppearance="?textAppearanceBodyMedium"
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
-                    android:text="@={vm.specialty}"
+                    android:text="@={vm.skill}"
                     android:background="@drawable/shape_white_radius_10"
                     android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/btn_signup_register"
@@ -161,7 +161,8 @@
                     android:paddingVertical="10dp"
                     android:text="@string/btn_signup_register"
                     android:textAppearance="?textAppearanceBodyMedium"
-                    android:background="@drawable/shape_light_green_radius_10"
+                    android:enabled="@{vm.isEnabledSignUpBtn()}"
+                    android:background="@{vm.isEnabledSignUpBtn() ? @drawable/shape_light_green_radius_10 : @drawable/shape_light_grey_radius_10}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />

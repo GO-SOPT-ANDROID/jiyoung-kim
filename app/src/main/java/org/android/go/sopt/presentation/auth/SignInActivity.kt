@@ -5,14 +5,16 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.MyInfo
+import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
 import org.android.go.sopt.util.*
 
+@AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
-    private val viewModel: SignInViewModel by viewModels { (ViewModelFactory(applicationContext)) }
+    private val viewModel: SignInViewModel by viewModels()
     private var signUpInfo: MyInfo? = null
 
     private val launcher =
@@ -35,7 +37,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
-        observeSignInValid()
+        viewModel.signIn()
         observeAutoSignIn()
         hideKeyBoard()
         clickButton()
@@ -47,29 +49,11 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         }
     }
 
-    private fun observeSignInValid() {
-        viewModel.isSignInValid.observe(this) {
-            Log.d("SignIn", "isSignInValid :: ${viewModel.isSignInValid.value}")
-            if (viewModel.isSignInValid.value == true) {
-                binding.root.showToast("로그인 성공!")
-                Intent(this, MainActivity::class.java).apply {
-                    putExtra("myInfo", signUpInfo)
-                    startActivity(this)
-                    finish()
-                }
-            } else {
-                Log.d("SignIn", "정보를 다시 입력해주세요")
-            }
-        }
-    }
-
     private fun observeAutoSignIn() {
         viewModel.isAutoSignInValid.observe(this) {
             when (it) {
                 true -> {
-                    Intent(this, MainActivity::class.java).apply {
-                        startActivity(this)
-                    }
+                    intentToMainActivity()
                 }
                 else -> {
                     Log.d("SignIn", "자동 로그인 오류")
@@ -78,27 +62,38 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         }
     }
 
+    private fun intentToMainActivity() {
+        Intent(this, MainActivity::class.java).apply {
+            startActivity(this)
+        }
+    }
+
     private fun clickButton() {
         with(binding) {
             // 로그인 버튼
             btnSigninBottom.setOnClickListener {
-                Log.d("엥", "내가 입력한 id:: ${viewModel.id.value}")
-                Log.d("엥", "내가 입력한 pwd:: ${viewModel.pwd.value}")
                 Log.d(
-                    "엥",
-                    "ss :: ${signUpInfo?.id} ooo ${signUpInfo?.pwd} 000 ${signUpInfo?.name} 000 ${signUpInfo?.specialty}"
+                    "SignIn",
+                    "회원 데이터 :: ${viewModel.id.value?.toString()} ooo ${viewModel.pwd.value?.toString()} 000 ${signUpInfo?.name} 000 ${signUpInfo?.skill}"
                 )
-                if (signUpInfo?.id!!.isNotEmpty() && signUpInfo?.pwd!!.isNotEmpty()) {
-                    Log.d("엥", "48")
-                    viewModel.signInValid(signUpInfo!!.id, signUpInfo!!.pwd)
-                } else {
-                    binding.root.showToast("로그인 정보를 입력해주세요")
-                }
+                viewModel.signInValid(viewModel.id.value.toString(), viewModel.pwd.value.toString())
+                observeSignInResult()
             }
 
             // 회원가입 버튼
             tvSigninSignup.setOnClickListener {
                 launcher.launch(Intent(this@SignInActivity, SignUpActivity::class.java))
+            }
+        }
+    }
+
+    private fun observeSignInResult() {
+        viewModel.isSignInSuccess.observe(this) {
+            if (viewModel.isSignInSuccess.value == true) {
+                binding.root.showToast("로그인 성공!")
+                intentToMainActivity()
+            } else {
+                binding.root.showSnackbar("로그인 실패ㅠ")
             }
         }
     }
