@@ -6,7 +6,7 @@ import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import dagger.hilt.android.qualifiers.ApplicationContext
-import org.android.go.sopt.data.model.MyInfo
+import org.android.go.sopt.data.entity.MyInfo
 import javax.inject.Inject
 
 /*

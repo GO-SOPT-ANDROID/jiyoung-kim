@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.MyInfo
+import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
 import org.android.go.sopt.util.*
 
@@ -37,6 +37,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
+        viewModel.signIn()
         observeAutoSignIn()
         hideKeyBoard()
         clickButton()

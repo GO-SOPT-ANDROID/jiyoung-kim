@@ -1,6 +1,10 @@
 package org.android.go.sopt.domain.repository
 
-import org.android.go.sopt.data.model.MyInfo
+import org.android.go.sopt.data.entity.MyInfo
+import org.android.go.sopt.data.model.request.RequestSignInDto
+import org.android.go.sopt.data.model.request.RequestSignUpDto
+import org.android.go.sopt.data.model.response.ResponseSignInDto
+import org.android.go.sopt.data.model.response.ResponseSignUpDto
 
 /*
 Shared Preference 관련 repository
@@ -13,12 +17,11 @@ interface AuthRepository {
     fun setAutoLogin(isAutoLogin: Boolean)
     fun getAutoLogin(): Boolean
 
-    fun signUp(
-        id: String,
-        password: String,
-        name: String,
-        skill: String?
-    )
+    suspend fun signUp(
+        requestSignUpDto: RequestSignUpDto
+    ): Result<ResponseSignUpDto.SignUpData>
 
-    fun signIn(id: String, password: String)
+    suspend fun signIn(
+        requestSignInDto: RequestSignInDto
+    ): Result<ResponseSignInDto.SignInData>
 }

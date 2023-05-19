@@ -3,9 +3,11 @@ package org.android.go.sopt.data.repository
 import android.util.Log
 import org.android.go.sopt.data.datasource.local.AuthLocalDataSource
 import org.android.go.sopt.data.datasource.remote.AuthRemoteDataSource
-import org.android.go.sopt.data.model.MyInfo
+import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.data.model.request.RequestSignInDto
 import org.android.go.sopt.data.model.request.RequestSignUpDto
+import org.android.go.sopt.data.model.response.ResponseSignInDto
+import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -46,13 +48,13 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun getAutoLogin(): Boolean = authLocalDataSource.isAlreadySignUp
-    override fun signUp(
-        id: String,
-        password: String,
-        name: String,
-        skill: String?
-    ) = authRemoteDataSource.signUp(RequestSignUpDto(id, password, name, skill))
+    override suspend fun signUp(requestSignUpDto: RequestSignUpDto): Result<ResponseSignUpDto.SignUpData> =
+        runCatching {
+            authRemoteDataSource.signUp(requestSignUpDto).data
+        }
 
-    override fun signIn(id: String, password: String) =
-        authRemoteDataSource.signIn(RequestSignInDto(id, password))
+    override suspend fun signIn(requestSignInDto: RequestSignInDto): Result<ResponseSignInDto.SignInData> =
+        runCatching {
+            authRemoteDataSource.signIn(requestSignInDto).data
+        }
 }

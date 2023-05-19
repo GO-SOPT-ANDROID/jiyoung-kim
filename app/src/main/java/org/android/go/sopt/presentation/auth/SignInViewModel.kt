@@ -3,7 +3,10 @@ package org.android.go.sopt.presentation.auth
 import android.util.Log
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.android.go.sopt.data.model.MyInfo
+import kotlinx.coroutines.launch
+import org.android.go.sopt.data.entity.MyInfo
+import org.android.go.sopt.data.model.request.RequestSignInDto
+import org.android.go.sopt.data.model.response.ResponseSignInDto
 import org.android.go.sopt.domain.repository.AuthRepository
 import org.android.go.sopt.util.addSourceList
 import javax.inject.Inject
@@ -28,6 +31,10 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
     val isEnabledSignInBtn = MediatorLiveData<Boolean>().apply {
         addSourceList(id, pwd) { checkSignInValid() }
     }
+
+    private val _signInResult: MutableLiveData<ResponseSignInDto> = MutableLiveData()
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> get() = _errorMessage
 
     init {
         setAutoLogin()
@@ -57,13 +64,19 @@ class SignInViewModel @Inject constructor(private val authRepository: AuthReposi
     }
 
     fun signIn() {
-        runCatching {
-            authRepository.signIn(id.value.toString(), pwd.value.toString())
-        }.onSuccess {
-            _isSignInSuccess.value = true
-        }
-            .onFailure {
+        val requestSignInDto = RequestSignInDto(
+            id = id.value.toString(),
+            password = pwd.value.toString()
+        )
+        viewModelScope.launch {
+            runCatching {
+                authRepository.signIn(requestSignInDto)
+            }.onSuccess {
+                _isSignInSuccess.value = true
+            }.onFailure {
                 _isSignInSuccess.value = false
+                _errorMessage.value = it.message
             }
+        }
     }
 }
