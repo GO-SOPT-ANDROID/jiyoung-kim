@@ -20,6 +20,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
     private const val AUTH_BASE_URL = BuildConfig.AUTH_BASE_URL
+    private const val IMAGE_BASE_URL = BuildConfig.IMAGE_BASE_URL
 
     private val loggingInterceptor =
         HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
@@ -55,4 +56,13 @@ object RetrofitModule {
     // 어떤 Type의 객체를 Inject하는지 알려줌
     @Qualifier
     annotation class Retrofit2(val type: BaseUrlType)
+
+    @Provides
+    @Singleton
+    @Retrofit2(BaseUrlType.IMAGE)
+    fun provideImageRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
+        .baseUrl(IMAGE_BASE_URL)
+        .client(client)
+        .addConverterFactory(Json.asConverterFactory("multipart/form-data".toMediaType()))
+        .build()
 }
