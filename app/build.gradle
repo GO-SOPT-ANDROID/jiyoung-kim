@@ -3,8 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     // Parcelize
     id 'kotlin-parcelize'
-    id 'kotlin-kapt'
     //hilt
+    id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlinx-serialization'
     
@@ -27,6 +27,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "AUTH_BASE_URL", properties["auth.base.url"]
         buildConfigField "String", "REQRES_BASE_URL", properties["reqres.base.url"]
+        buildConfigField "String", "IMAGE_BASE_URL", properties["image.base.url"]
     }
 
     buildTypes {

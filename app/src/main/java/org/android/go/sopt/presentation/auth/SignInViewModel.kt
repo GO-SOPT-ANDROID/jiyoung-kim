@@ -14,6 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(private val authRepository: AuthRepository) :
     ViewModel() {
+    val signInResult: MutableLiveData<ResponseSignInDto> = MutableLiveData()
     val id: MutableLiveData<String> = MutableLiveData()
     val pwd: MutableLiveData<String> = MutableLiveData()
     private lateinit var myInfo: MyInfo

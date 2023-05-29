@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.android.go.sopt.data.service.AuthService
+import org.android.go.sopt.data.service.ImageService
 import org.android.go.sopt.data.service.ReqresService
 import org.android.go.sopt.di.type.BaseUrlType
 import retrofit2.Retrofit
@@ -22,4 +23,9 @@ object ServiceModule {
     @Provides
     fun provideReqresService(@RetrofitModule.Retrofit2(BaseUrlType.REQRES) retrofit: Retrofit): ReqresService =
         retrofit.create(ReqresService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideImageService(@RetrofitModule.Retrofit2(BaseUrlType.IMAGE) retrofit: Retrofit): ImageService =
+        retrofit.create(ImageService::class.java)
 }

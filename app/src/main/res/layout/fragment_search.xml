@@ -15,14 +15,57 @@
         tools:context=".presentation.main.search.SearchFragment">
 
 
-        <TextView
-            android:id="@+id/textView"
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_search_image"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginHorizontal="50dp"-->
+<!--            android:layout_marginVertical="30dp"-->
+<!--            app:layout_constraintDimensionRatio="1:1"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:srcCompat="@tools:sample/avatars" />-->
+
+        <LinearLayout
+            android:id="@+id/ll_search_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search View"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="100dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_search_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_gallery_first"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <ImageView
+                android:id="@+id/iv_gallery_second"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="30dp" />
+
+            <ImageView
+                android:id="@+id/iv_gallery_third"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_search_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:text="이미지 가져오기"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
