@@ -80,8 +80,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:text="@={vm.id}"
-                        android:textAppearance="?textAppearanceBodyMedium"
-                        app:isValid="@{vm.isIdValid}" />
+                        android:textAppearance="?textAppearanceBodyMedium" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -120,8 +119,7 @@
                         android:minHeight="48dp"
                         android:selectAllOnFocus="false"
                         android:text="@={vm.pwd}"
-                        android:textAppearance="?textAppearanceBodyMedium"
-                        app:isValid="@{vm.isPwdValid}" />
+                        android:textAppearance="?textAppearanceBodyMedium" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
