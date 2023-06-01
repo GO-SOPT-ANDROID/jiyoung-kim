@@ -21,16 +21,4 @@
 
     </style>
 
-    <style name="MyTextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
-        <item name="android:background">@drawable/shape_white_radius_10</item>
-    </style>
-
-    <style name="TextInputEditTextStyle" parent="ThemeOverlay.Material3.MaterialTimePicker.Display.TextInputEditText">
-        <item name="android:background">@drawable/shape_textinput_edittext_background</item>
-    </style>
-
-    <style name="TextInputEditErrorStyle" parent="ThemeOverlay.Material3.MaterialTimePicker.Display.TextInputEditText">
-        <item name="android:background">@drawable/shape_red_radius_10</item>
-    </style>
-
 </resources>

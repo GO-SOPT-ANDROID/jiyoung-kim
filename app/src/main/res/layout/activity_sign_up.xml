@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
             type="org.android.go.sopt.presentation.auth.SignUpViewModel" />
@@ -12,18 +11,24 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_signup_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?colorSecondaryVariant">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_signup_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_signup_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingHorizontal="20dp"
                 tools:context=".presentation.auth.SignUpActivity">
 
@@ -57,8 +62,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeColor="#9EB23B"
+                    app:boxStrokeWidthFocused="1dp"
                     app:errorEnabled="false"
-                    app:helperText=""
+                    app:helperText="@null"
                     app:helperTextTextColor="@color/design_default_color_error"
                     app:layout_constraintBottom_toTopOf="@+id/tv_signup_pwd"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -66,11 +77,11 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_signup_id"
-                        style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:text="@={vm.id}"
-                        android:textAppearance="?textAppearanceBodyMedium" />
+                        android:textAppearance="?textAppearanceBodyMedium"
+                        app:isValid="@{vm.isIdValid}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -86,12 +97,17 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/edt_signup_pwd_main"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeColor="#9EB23B"
+                    app:boxStrokeWidthFocused="1dp"
                     app:errorEnabled="false"
-                    app:helperText=""
+                    app:helperText="@null"
                     app:helperTextTextColor="@color/design_default_color_error"
                     app:layout_constraintBottom_toTopOf="@+id/tv_signup_name"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -101,10 +117,11 @@
                         android:id="@+id/edt_signup_pwd"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:background="@drawable/shape_white_radius_10"
                         android:minHeight="48dp"
+                        android:selectAllOnFocus="false"
                         android:text="@={vm.pwd}"
-                        android:textAppearance="?textAppearanceBodyMedium" />
+                        android:textAppearance="?textAppearanceBodyMedium"
+                        app:isValid="@{vm.isPwdValid}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -118,7 +135,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_signup_name"
                     style="@style/TextInputEditTextStyle"
                     android:layout_width="match_parent"

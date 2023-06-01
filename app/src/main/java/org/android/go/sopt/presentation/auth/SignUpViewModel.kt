@@ -5,7 +5,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.data.model.request.RequestSignUpDto
-import org.android.go.sopt.data.model.response.ResponseSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
 import org.android.go.sopt.util.addSourceList
 import javax.inject.Inject
@@ -13,11 +12,16 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel
 @Inject constructor(private val authRepository: AuthRepository) : ViewModel() {
-    val id: MutableLiveData<String> = MutableLiveData()
-    val pwd: MutableLiveData<String> = MutableLiveData()
+    val id: MutableLiveData<String> = MutableLiveData("")
+    val pwd: MutableLiveData<String> = MutableLiveData("")
     val name: MutableLiveData<String> = MutableLiveData()
     val skill: MutableLiveData<String> = MutableLiveData()
     private var myInfo: MyInfo? = null
+
+    init {
+        checkIdValid(id.value.toString())
+        checkPwdValid(pwd.value.toString())
+    }
 
     val isIdValid: LiveData<Boolean> = id.map { id -> checkIdValid(id) }
     val isPwdValid: LiveData<Boolean> = pwd.map { pwd -> checkPwdValid(pwd) }
@@ -30,9 +34,7 @@ class SignUpViewModel
     val isSignUpSuccess: LiveData<Boolean>
         get() = _isSignUpSuccess
 
-    private val _signUpResult: MutableLiveData<ResponseSignUpDto> = MutableLiveData()
     private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> get() = _errorMessage
 
     fun getInfo(): MyInfo {
         return MyInfo(
