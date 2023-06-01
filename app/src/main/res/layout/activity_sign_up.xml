@@ -50,24 +50,30 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/tv_signup_id"
                     android:textAppearance="?textAppearanceBodyMedium"
-                    app:layout_constraintBottom_toTopOf="@+id/edt_signup_id"
+                    app:layout_constraintBottom_toTopOf="@+id/edt_signup_id_main"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <EditText
-                    android:id="@+id/edt_signup_id"
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edt_signup_id_main"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:hint="@string/edt_signup_id"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp"
-                    android:textAppearance="?textAppearanceBodyMedium"
-                    android:text="@={vm.id}"
-                    android:background="@drawable/shape_white_radius_10"
-                    android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/tv_signup_pwd"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="20dp"
+                    app:errorEnabled="false"
+                    app:helperText=""
+                    app:helperTextTextColor="@color/design_default_color_error">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_signup_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="@={vm.id}"
+                        style="@style/TextInputEditTextStyle"
+                        android:textAppearance="?textAppearanceBodyMedium"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_signup_pwd"
@@ -76,26 +82,32 @@
                     android:layout_marginBottom="10dp"
                     android:text="@string/tv_signup_pwd"
                     android:textAppearance="?textAppearanceBodyMedium"
-                    app:layout_constraintBottom_toTopOf="@+id/edt_signup_pwd"
+                    app:layout_constraintBottom_toTopOf="@+id/edt_signup_pwd_main"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <EditText
-                    android:id="@+id/edt_signup_pwd"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edt_signup_pwd_main"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:ems="10"
-                    android:hint="@string/edt_signup_pwd"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp"
-                    android:textAppearance="?textAppearanceBodyMedium"
-                    android:text="@={vm.pwd}"
-                    android:background="@drawable/shape_white_radius_10"
-                    android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@+id/tv_signup_name"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="20dp"
+                    app:errorEnabled="false"
+                    app:helperText=""
+                    app:helperTextTextColor="@color/design_default_color_error">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_signup_pwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="@={vm.pwd}"
+                        android:minHeight="48dp"
+                        android:textAppearance="?textAppearanceBodyMedium"
+                        android:background="@drawable/shape_white_radius_10" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_signup_name"
@@ -111,14 +123,14 @@
                 <EditText
                     android:id="@+id/edt_signup_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginBottom="20dp"
                     android:hint="@string/edt_signup_name"
                     android:textAppearance="?textAppearanceBodyMedium"
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
                     android:text="@={vm.name}"
-                    android:background="@drawable/shape_white_radius_10"
+                    style="@style/TextInputEditTextStyle"
                     android:padding="12dp"
                     app:layout_constraintBottom_toTopOf="@id/tv_signup_specialty"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +151,7 @@
                 <EditText
                     android:id="@+id/edt_signup_specialty"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="40dp"
                     android:hint="@string/edt_signup_specialty"

@@ -7,7 +7,7 @@
 
 <!--            <stroke-->
 <!--                android:width="1dp"-->
-<!--                android:color="#9EB23B" />-->
+<!--                android:color="#FF0000" />-->
 <!--            <corners android:radius="10dp" />-->
 <!--            <solid-->
 <!--                android:color="#FFFBF5" />-->
@@ -21,12 +21,9 @@
 
 <!--        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">-->
 
-<!--            <stroke-->
-<!--                android:width="1dp"-->
-<!--                android:color="#EEEEEE" />-->
+<!--            <stroke android:width="1dp" android:color="#EEEEEE" />-->
 <!--            <corners android:radius="10dp" />-->
-<!--            <solid-->
-<!--                android:color="#FFFBF5" />-->
+<!--            <solid android:color="#FFFBF5" />-->
 
 <!--        </shape>-->
 
@@ -39,7 +36,7 @@
 
     <stroke
         android:width="1dp"
-        android:color="#9EB23B" />
+        android:color="#FF0000" />
     <corners android:radius="10dp" />
     <solid
         android:color="#FFFBF5" />

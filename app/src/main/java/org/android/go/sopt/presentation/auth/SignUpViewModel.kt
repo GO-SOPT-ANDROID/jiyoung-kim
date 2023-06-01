@@ -19,6 +19,9 @@ class SignUpViewModel
     val skill: MutableLiveData<String> = MutableLiveData()
     private var myInfo: MyInfo? = null
 
+    val isIdValid: LiveData<Boolean> = id.map { id -> checkIdValid(id) }
+    val isPwdValid: LiveData<Boolean> = pwd.map { pwd -> checkIdValid(pwd) }
+
     val isEnabledSignUpBtn = MediatorLiveData<Boolean>().apply {
         addSourceList(id, pwd, name, skill) { checkSignUpValid() }
     }
@@ -42,8 +45,9 @@ class SignUpViewModel
         }
     }
 
-    private fun checkSignUpValid() =
-        id.value?.length in 6..10 && pwd.value?.length in 8..12 && !name.value.isNullOrBlank() && !skill.value.isNullOrBlank()
+    private fun checkSignUpValid(): Boolean =
+//        id.value?.length in 6..10 && pwd.value?.length in 8..12 && !name.value.isNullOrBlank() && !skill.value.isNullOrBlank()
+        checkIdValid(id.value.toString()) && checkPwdValid(pwd.value.toString()) && !name.value.isNullOrBlank() && !skill.value.isNullOrBlank()
 
     fun saveUserInfo() {
         authRepository.updateUserInfo(getInfo())
@@ -69,5 +73,14 @@ class SignUpViewModel
                 _errorMessage.value = it.message
             }
         }
+    }
+
+    private fun checkIdValid(id: String): Boolean = id.matches(ID_PATTERN) || id.isEmpty()
+
+    private fun checkPwdValid(pwd: String): Boolean = pwd.matches(PWD_PATTERN) || pwd.isEmpty()
+
+    companion object {
+        val ID_PATTERN = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z0-9]{6,10}\$".toRegex()
+        val PWD_PATTERN = "^(?=.*[a-zA-Z])(?=.*[!@#\$%^&*()])(?=.*[0-9])[a-zA-Z!@#\$%^&*()0-9]{6,12}\$".toRegex()
     }
 }

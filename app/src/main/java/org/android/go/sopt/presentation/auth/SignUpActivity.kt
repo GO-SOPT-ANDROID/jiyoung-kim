@@ -21,6 +21,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
         hideKeyBoard()
+        validInput()
         clickSignUpBtn()
     }
 
@@ -57,6 +58,30 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     private fun hideKeyBoard() {
         binding.clSignupMain.setOnClickListener {
             it.hideKeyboard()
+        }
+    }
+
+    private fun validInput() {
+        viewModel.isIdValid.observe(this) {
+            Log.d("signUp", viewModel.isIdValid.value.toString())
+            if (viewModel.isIdValid.value == false) {
+                binding.edtSignupIdMain.error = "아이디 형식이 잘못 되었어요 :("
+                binding.edtSignupId.clearFocus()
+                binding.edtSignupId.requestFocus()
+            } else {
+                binding.edtSignupIdMain.error = null
+                binding.edtSignupIdMain.isErrorEnabled = false
+            }
+        }
+        viewModel.isPwdValid.observe(this) {
+            Log.d("signUp", viewModel.isPwdValid.value.toString())
+            if (viewModel.isPwdValid.value == false) {
+                binding.edtSignupPwdMain.error = "비밀번호 형식이 잘못 되었어요 :("
+//                binding.edtSignupPwd.requestFocus()
+            } else {
+                binding.edtSignupPwdMain.error = null
+                binding.edtSignupPwdMain.isErrorEnabled = false
+            }
         }
     }
 }
