@@ -22,6 +22,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         binding.vm = viewModel
         hideKeyBoard()
         validInput()
+        observeSignUpResult()
         clickSignUpBtn()
         clearFocusLastEditText()
     }
@@ -32,7 +33,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             Log.d("SignUp", "signUpInfo :: $signUpInfo")
             Log.d("SignUp", "signUpInfo :: ${signUpInfo?.id ?: "id null"}")
             viewModel.saveUserInfo()
-            observeSignUpResult()
         }
     }
 

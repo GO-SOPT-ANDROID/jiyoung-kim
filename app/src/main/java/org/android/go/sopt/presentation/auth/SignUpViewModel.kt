@@ -30,7 +30,7 @@ class SignUpViewModel
         addSourceList(id, pwd, name, skill) { checkSignUpValid() }
     }
 
-    private val _isSignUpSuccess = MutableLiveData(false)
+    private val _isSignUpSuccess = MutableLiveData<Boolean>()
     val isSignUpSuccess: LiveData<Boolean>
         get() = _isSignUpSuccess
 
