@@ -37,8 +37,8 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     }
 
     private fun observeSignUpResult() {
-        viewModel.isSignUpSuccess.observe(this) {
-            if (viewModel.isSignUpSuccess.value == true) {
+        viewModel.isSignUpSuccess.observe(this) { isSignUpSuccess ->
+            if (isSignUpSuccess) {
                 intentToSignInActivity()
             } else {
                 binding.root.showSnackbar("회원가입 실패ㅠ")
@@ -63,18 +63,18 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     }
 
     private fun validInput() {
-        viewModel.isIdValid.observe(this) {
+        viewModel.isIdValid.observe(this) { isIdValid ->
             Log.d("signUp", viewModel.isIdValid.value.toString())
-            if (viewModel.isIdValid.value == false) {
+            if (!isIdValid) {
                 binding.edtSignupIdMain.error = "아이디 형식이 잘못 되었어요 :("
             } else {
                 binding.edtSignupIdMain.error = null
                 binding.edtSignupIdMain.isErrorEnabled = false
             }
         }
-        viewModel.isPwdValid.observe(this) {
+        viewModel.isPwdValid.observe(this) { isPwdValid ->
             Log.d("signUp", viewModel.isPwdValid.value.toString())
-            if (viewModel.isPwdValid.value == false) {
+            if (!isPwdValid) {
                 binding.edtSignupPwdMain.error = "비밀번호 형식이 잘못 되었어요 :("
             } else {
                 binding.edtSignupPwdMain.error = null
