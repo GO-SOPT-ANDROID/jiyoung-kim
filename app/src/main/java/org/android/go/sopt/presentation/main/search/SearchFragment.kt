@@ -11,8 +11,8 @@ import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentSearchBinding
-import org.android.go.sopt.util.BindingFragment
 import org.android.go.sopt.util.ContentUriRequestBody
+import org.android.go.sopt.util.base.BindingFragment
 
 @AndroidEntryPoint
 class SearchFragment : BindingFragment<FragmentSearchBinding>(R.layout.fragment_search) {

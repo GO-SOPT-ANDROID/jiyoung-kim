@@ -10,8 +10,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentGalleryBinding
-import org.android.go.sopt.util.BindingFragment
 import org.android.go.sopt.util.LoadingDialog
+import org.android.go.sopt.util.base.BindingFragment
 
 @AndroidEntryPoint
 class GalleryFragment : BindingFragment<FragmentGalleryBinding>(R.layout.fragment_gallery) {

@@ -1,4 +1,4 @@
-package org.android.go.sopt.util
+package org.android.go.sopt.util.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
