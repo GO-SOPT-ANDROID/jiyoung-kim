@@ -8,7 +8,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.databinding.ActivitySignUpBinding
-import org.android.go.sopt.util.BindingActivity
+import org.android.go.sopt.util.EventObserver
+import org.android.go.sopt.util.base.BindingActivity
 import org.android.go.sopt.util.hideKeyboard
 import org.android.go.sopt.util.showSnackbar
 
@@ -37,14 +38,17 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     }
 
     private fun observeSignUpResult() {
-        viewModel.isSignUpSuccess.observe(this) { isSignUpSuccess ->
-            if (isSignUpSuccess) {
-                intentToSignInActivity()
-            } else {
-                binding.root.showSnackbar("회원가입 실패ㅠ")
+        viewModel.isSignUpSuccess.observe(
+            this,
+            EventObserver { isSignUpSuccess ->
+                if (isSignUpSuccess) {
+                    intentToSignInActivity()
+                } else {
+                    binding.root.showSnackbar("회원가입 실패ㅠ")
+                }
+                Log.d("signUp", "isSignUpSuccess :: ${viewModel.isSignUpSuccess.value}")
             }
-            Log.d("signUp", "isSignUpSuccess :: ${viewModel.isSignUpSuccess.value}")
-        }
+        )
     }
 
     private fun intentToSignInActivity() {

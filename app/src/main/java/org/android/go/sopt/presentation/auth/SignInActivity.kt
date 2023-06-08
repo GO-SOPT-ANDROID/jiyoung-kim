@@ -11,6 +11,7 @@ import org.android.go.sopt.R
 import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
 import org.android.go.sopt.util.*
+import org.android.go.sopt.util.base.BindingActivity
 
 @AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {

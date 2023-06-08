@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.data.model.request.RequestSignUpDto
 import org.android.go.sopt.domain.repository.AuthRepository
+import org.android.go.sopt.util.Event
 import org.android.go.sopt.util.addSourceList
 import javax.inject.Inject
 
@@ -30,8 +31,8 @@ class SignUpViewModel
         addSourceList(id, pwd, name, skill) { checkSignUpValid() }
     }
 
-    private val _isSignUpSuccess = MutableLiveData<Boolean>()
-    val isSignUpSuccess: LiveData<Boolean>
+    private val _isSignUpSuccess = MutableLiveData<Event<Boolean>>()
+    val isSignUpSuccess: LiveData<Event<Boolean>>
         get() = _isSignUpSuccess
 
     private val _errorMessage = MutableLiveData<String>()
@@ -68,9 +69,9 @@ class SignUpViewModel
                     requestSignUpDto
                 )
             }.onSuccess {
-                _isSignUpSuccess.value = true
+                _isSignUpSuccess.value = Event(true)
             }.onFailure {
-                _isSignUpSuccess.value = false
+                _isSignUpSuccess.value = Event(false)
                 _errorMessage.value = it.message
             }
         }
