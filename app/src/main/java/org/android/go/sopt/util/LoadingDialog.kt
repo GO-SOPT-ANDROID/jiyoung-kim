@@ -7,8 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import org.android.go.sopt.R
 
-class LoadingDialog
-constructor(context: Context) : Dialog(context) {
+class LoadingDialog(context: Context) : Dialog(context) {
 
     init {
         setCanceledOnTouchOutside(false)
