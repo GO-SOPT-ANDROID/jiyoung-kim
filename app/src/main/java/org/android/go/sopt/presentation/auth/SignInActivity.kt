@@ -88,8 +88,8 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     }
 
     private fun observeSignInResult() {
-        viewModel.isSignInSuccess.observe(this) {
-            if (viewModel.isSignInSuccess.value == true) {
+        viewModel.isSignInSuccess.observe(this) { isPwdValid ->
+            if (isPwdValid) {
                 binding.root.showToast("로그인 성공!")
                 intentToMainActivity()
             } else {
