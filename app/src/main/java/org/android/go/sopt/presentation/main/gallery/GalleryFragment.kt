@@ -15,6 +15,7 @@ import org.android.go.sopt.util.base.BindingFragment
 
 @AndroidEntryPoint
 class GalleryFragment : BindingFragment<FragmentGalleryBinding>(R.layout.fragment_gallery) {
+    private val loadingDialog: LoadingDialog by lazy { LoadingDialog() }
     private val viewModel: GalleryViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,25 +23,28 @@ class GalleryFragment : BindingFragment<FragmentGalleryBinding>(R.layout.fragmen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        binding.vpGalleryMain.adapter = GalleryViewPagerAdapter().apply {
-//            setItemList(listOf(R.drawable.kitkat, R.drawable.kitkat, R.drawable.kitkat))
-//        }
+        /*
+        viewpager 세미나 실습 코드
+        binding.vpGalleryMain.adapter = GalleryViewPagerAdapter().apply {
+        setItemList(listOf(R.drawable.kitkat, R.drawable.kitkat, R.drawable.kitkat))
+            }
+
+         */
 
         val memberAdapter = GalleryMemberListAdapter()
         setAdapter(memberAdapter)
     }
 
     private fun setAdapter(listAdapter: GalleryMemberListAdapter) {
-        val dialog = LoadingDialog(requireContext())
-        dialog.show()
+        loadingDialog.show(childFragmentManager, "LOADING_DIALOG")
         viewModel.soptMembers.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
                 CoroutineScope(Main).launch {
                     delay(9000)
-                    dialog.dismiss()
+                    loadingDialog.dismiss()
                 }
             } else {
-                dialog.dismiss()
+                loadingDialog.dismiss()
                 binding.rcvGalleryView.adapter = listAdapter
                 listAdapter.submitList(it)
             }
