@@ -26,4 +26,7 @@
     <string name="btn_mypage_withdraw">회원탈퇴</string>
     <string name="tv_signin_signup">회원가입</string>
     <string name="tv_loading_title">로딩중..</string>
+    <string name="signup_failure_toast">회원가입에 실패했습니다 :(</string>
+    <string name="signup_id_invalid">아이디 형식이 잘못 되었어요 :(</string>
+    <string name="signup_pwd_invalid">비밀번호 형식이 잘못 되었어요 :(</string>
 </resources>
