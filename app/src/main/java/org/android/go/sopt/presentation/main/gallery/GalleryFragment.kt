@@ -3,9 +3,8 @@ package org.android.go.sopt.presentation.main.gallery
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.android.go.sopt.R
@@ -39,8 +38,8 @@ class GalleryFragment : BindingFragment<FragmentGalleryBinding>(R.layout.fragmen
         loadingDialog.show(childFragmentManager, "LOADING_DIALOG")
         viewModel.soptMembers.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
-                CoroutineScope(Main).launch {
-                    delay(9000)
+                viewLifecycleOwner.lifecycleScope.launch {
+                    delay(1000)
                     loadingDialog.dismiss()
                 }
             } else {
