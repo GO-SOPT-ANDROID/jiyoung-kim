@@ -1,4 +1,4 @@
-package org.android.go.sopt.util
+package org.android.go.sopt.util.base
 
 /*
 class ViewModelFactory(private val applicationContext: Context) : ViewModelProvider.Factory {

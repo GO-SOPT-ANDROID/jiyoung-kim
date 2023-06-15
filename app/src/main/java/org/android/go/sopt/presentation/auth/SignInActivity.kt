@@ -11,6 +11,7 @@ import org.android.go.sopt.R
 import org.android.go.sopt.data.entity.MyInfo
 import org.android.go.sopt.databinding.ActivitySignInBinding
 import org.android.go.sopt.util.*
+import org.android.go.sopt.util.base.BindingActivity
 
 @AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
@@ -88,8 +89,8 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     }
 
     private fun observeSignInResult() {
-        viewModel.isSignInSuccess.observe(this) {
-            if (viewModel.isSignInSuccess.value == true) {
+        viewModel.isSignInSuccess.observe(this) { isPwdValid ->
+            if (isPwdValid) {
                 binding.root.showToast("로그인 성공!")
                 intentToMainActivity()
             } else {

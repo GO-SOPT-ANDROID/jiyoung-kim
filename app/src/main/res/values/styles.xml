@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyTextInputLayoutStyle" parent="Widget.Design.TextInputEditText">
+        <item name="android:background">@drawable/shape_white_radius_10</item>
+    </style>
+
+    <style name="TextInputEditTextStyle" parent="Widget.Design.TextInputEditText">
+        <item name="android:background">@drawable/shape_textinput_edittext_background</item>
+    </style>
+
+    <style name="TextInputEditErrorStyle" parent="Widget.Design.TextInputEditText">
+        <item name="android:background">@drawable/shape_red_radius_10</item>
+    </style>
+</resources>
